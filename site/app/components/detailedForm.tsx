@@ -94,11 +94,15 @@ export default function DetailedForm() {
 
   const canGoNext = validateSection(currentStep);
 
+  const scrollToForm = () => {
+    document.getElementById("bilan-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   const handleNext = () => {
     if (canGoNext && currentStep < sections.length - 1) {
       setDirection(1);
       setCurrentStep(currentStep + 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      scrollToForm();
     }
   };
 
@@ -106,7 +110,7 @@ export default function DetailedForm() {
     if (currentStep > 0) {
       setDirection(-1);
       setCurrentStep(currentStep - 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      scrollToForm();
     }
   };
 
