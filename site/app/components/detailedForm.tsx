@@ -4,27 +4,135 @@ import { useState } from "react";
 import { User, Cigarette, Heart, DollarSign, Target, ArrowRight, ArrowLeft, Check } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
+type FormData = {
+  firstName: string;
+  age: string;
+  email: string;
+  phone: string;
+  smokingYears: string;
+  cigaretteType: string[];
+  cigarettesPerDay: string;
+  firstCigarette: string;
+  smokingMoments: string[];
+  weekdayVsWeekend: string;
+  aloneVsSocial: string;
+  emotions: string[];
+  stressManagement: string;
+  stressSmoking: string;
+  guilt: string;
+  weightFear: string;
+  failureFear: string;
+  relapseCause: string;
+  motivationLevel: string;
+  monthlyBudget: string;
+  priceInfluence: string;
+  financialMotivation: string;
+  savingsDestination: string[];
+  calculatedSavings: string;
+  quitDate: string;
+  supportType: string[];
+  message: string;
+};
+
+function isFieldAnswered(formData: FormData, field: keyof FormData): boolean {
+  const val = formData[field];
+  if (Array.isArray(val)) return val.length > 0;
+  return val !== "";
+}
+
+function ProgressiveQuestion({ visible, children }: { visible: boolean; children: React.ReactNode }) {
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          initial={{ opacity: 0, height: 0, marginTop: 0 }}
+          animate={{ opacity: 1, height: "auto", marginTop: 24 }}
+          exit={{ opacity: 0, height: 0, marginTop: 0 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          style={{ overflow: "hidden" }}
+        >
+          {children}
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+// Composants de questions réutilisables
+function ChoiceButtons({
+  options,
+  value,
+  onChange,
+}: {
+  options: string[];
+  value: string;
+  onChange: (v: string) => void;
+}) {
+  return (
+    <div className="flex flex-wrap gap-3">
+      {options.map((option) => (
+        <button
+          key={option}
+          type="button"
+          onClick={() => onChange(option)}
+          className={`px-6 py-2.5 rounded-full border transition-all ${
+            value === option
+              ? "bg-blue/10 border-blue text-blue"
+              : "border-gray-200 text-gray-600 hover:border-blue/50"
+          }`}
+        >
+          {option}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function MultiChoiceButtons({
+  options,
+  values,
+  onChange,
+}: {
+  options: string[];
+  values: string[];
+  onChange: (v: string) => void;
+}) {
+  return (
+    <div className="flex flex-wrap gap-3">
+      {options.map((option) => (
+        <button
+          key={option}
+          type="button"
+          onClick={() => onChange(option)}
+          className={`px-6 py-2.5 rounded-full border transition-all ${
+            values.includes(option)
+              ? "bg-blue/10 border-blue text-blue"
+              : "border-gray-200 text-gray-600 hover:border-blue/50"
+          }`}
+        >
+          {option}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 export default function DetailedForm() {
   const [currentStep, setCurrentStep] = useState(0);
   const [direction, setDirection] = useState(0);
-  const [formData, setFormData] = useState({
-    // Identité
+  const [formData, setFormData] = useState<FormData>({
     firstName: "",
     age: "",
     email: "",
     phone: "",
-    
-    // Consommation
     smokingYears: "",
-    cigaretteType: [] as string[],
+    cigaretteType: [],
     cigarettesPerDay: "",
     firstCigarette: "",
-    smokingMoments: [] as string[],
+    smokingMoments: [],
     weekdayVsWeekend: "",
     aloneVsSocial: "",
-    
-    // Psychologie & émotions
-    emotions: [] as string[],
+    emotions: [],
     stressManagement: "",
     stressSmoking: "",
     guilt: "",
@@ -32,44 +140,33 @@ export default function DetailedForm() {
     failureFear: "",
     relapseCause: "",
     motivationLevel: "5",
-    
-    // Budget & finances
     monthlyBudget: "",
     priceInfluence: "",
     financialMotivation: "",
-    savingsDestination: [] as string[],
+    savingsDestination: [],
     calculatedSavings: "",
-    
-    // Objectifs & accompagnement
     quitDate: "",
-    supportType: [] as string[],
+    supportType: [],
     message: "",
   });
 
-  const totalQuestions = 27;
-  const answeredQuestions = Object.values(formData).filter(v => 
-    Array.isArray(v) ? v.length > 0 : v !== ""
-  ).length;
-  const progress = Math.round((answeredQuestions / totalQuestions) * 100);
-
-  const handleCheckboxChange = (field: string, value: string) => {
-    const currentValues = formData[field as keyof typeof formData] as string[];
+  const handleCheckboxChange = (field: keyof FormData, value: string) => {
+    const currentValues = formData[field] as string[];
     const newValues = currentValues.includes(value)
-      ? currentValues.filter(v => v !== value)
+      ? currentValues.filter((v) => v !== value)
       : [...currentValues, value];
-    setFormData(prev => ({ ...prev, [field]: newValues }));
+    setFormData((prev) => ({ ...prev, [field]: newValues }));
   };
 
-  const handleChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+  const handleChange = (field: keyof FormData, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  // Validation de chaque section
   const validateSection = (sectionIndex: number): boolean => {
     switch (sectionIndex) {
-      case 0: // Identité
+      case 0:
         return !!(formData.firstName && formData.age && formData.email);
-      case 1: // Consommation
+      case 1:
         return !!(
           formData.smokingYears &&
           formData.cigaretteType.length > 0 &&
@@ -77,16 +174,16 @@ export default function DetailedForm() {
           formData.firstCigarette &&
           formData.smokingMoments.length > 0
         );
-      case 2: // Psychologie & émotions
+      case 2:
         return !!(
           formData.emotions.length > 0 &&
           formData.stressManagement &&
           formData.motivationLevel
         );
-      case 3: // Budget & finances
-        return !!(formData.monthlyBudget);
-      case 4: // Objectifs & accompagnement
-        return !!(formData.quitDate);
+      case 3:
+        return !!formData.monthlyBudget;
+      case 4:
+        return !!formData.quitDate;
       default:
         return false;
     }
@@ -114,63 +211,63 @@ export default function DetailedForm() {
     }
   };
 
+  const a = (field: keyof FormData) => isFieldAnswered(formData, field);
+
   const sections = [
     {
       title: "Identité",
       icon: User,
       questions: "Q 1–4",
       content: (
-        <div className="space-y-6">
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Prénom <span className="text-blue">*</span>
-              </label>
-              <input
-                type="text"
-                value={formData.firstName}
-                onChange={(e) => handleChange("firstName", e.target.value)}
-                placeholder="Votre prénom"
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue/50 focus:border-transparent outline-none"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Âge <span className="text-blue">*</span>
-              </label>
-              <input
-                type="number"
-                value={formData.age}
-                onChange={(e) => handleChange("age", e.target.value)}
-                placeholder="Ex : 34"
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue/50 focus:border-transparent outline-none"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                E-mail <span className="text-blue">*</span>
-              </label>
-              <input
-                type="email"
-                value={formData.email}
-                onChange={(e) => handleChange("email", e.target.value)}
-                placeholder="vous@email.com"
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue/50 focus:border-transparent outline-none"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Téléphone
-              </label>
-              <input
-                type="tel"
-                value={formData.phone}
-                onChange={(e) => handleChange("phone", e.target.value)}
-                placeholder="06 00 00 00 00"
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue/50 focus:border-transparent outline-none"
-              />
-            </div>
+        <div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Prénom <span className="text-blue">*</span>
+            </label>
+            <input
+              type="text"
+              value={formData.firstName}
+              onChange={(e) => handleChange("firstName", e.target.value)}
+              placeholder="Ton prénom"
+              className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue/50 focus:border-transparent outline-none"
+            />
           </div>
+          <ProgressiveQuestion visible={a("firstName")}>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Âge <span className="text-blue">*</span>
+            </label>
+            <input
+              type="number"
+              value={formData.age}
+              onChange={(e) => handleChange("age", e.target.value)}
+              placeholder="Ex : 34"
+              className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue/50 focus:border-transparent outline-none"
+            />
+          </ProgressiveQuestion>
+          <ProgressiveQuestion visible={a("age")}>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              E-mail <span className="text-blue">*</span>
+            </label>
+            <input
+              type="email"
+              value={formData.email}
+              onChange={(e) => handleChange("email", e.target.value)}
+              placeholder="vous@email.com"
+              className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue/50 focus:border-transparent outline-none"
+            />
+          </ProgressiveQuestion>
+          <ProgressiveQuestion visible={a("email")}>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Téléphone
+            </label>
+            <input
+              type="tel"
+              value={formData.phone}
+              onChange={(e) => handleChange("phone", e.target.value)}
+              placeholder="06 00 00 00 00"
+              className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue/50 focus:border-transparent outline-none"
+            />
+          </ProgressiveQuestion>
         </div>
       ),
     },
@@ -179,155 +276,85 @@ export default function DetailedForm() {
       icon: Cigarette,
       questions: "Q 5–11",
       content: (
-        <div className="space-y-8">
+        <div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">
-              Depuis combien d'années fumez-vous ? <span className="text-blue">*</span>
+              Depuis combien d&apos;années fumes-tu ? <span className="text-blue">*</span>
             </label>
-            <div className="flex flex-wrap gap-3">
-              {["Moins d'1 an", "1 à 5 ans", "5 à 10 ans", "10 à 20 ans", "+ de 20 ans"].map(option => (
-                <button
-                  key={option}
-                  onClick={() => handleChange("smokingYears", option)}
-                  className={`px-6 py-2.5 rounded-full border transition-all ${
-                    formData.smokingYears === option
-                      ? "bg-blue/10 border-blue text-blue"
-                      : "border-gray-200 text-gray-600 hover:border-blue/50"
-                  }`}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
+            <ChoiceButtons
+              options={["Moins d'1 an", "1 à 5 ans", "5 à 10 ans", "10 à 20 ans", "+ de 20 ans"]}
+              value={formData.smokingYears}
+              onChange={(v) => handleChange("smokingYears", v)}
+            />
           </div>
 
-          <div>
+          <ProgressiveQuestion visible={a("smokingYears")}>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Type(s) de cigarettes <span className="text-blue">*</span>
             </label>
             <p className="text-sm text-gray-500 mb-3">Plusieurs choix possibles</p>
-            <div className="flex flex-wrap gap-3">
-              {["Manufacturée classique", "À rouler", "Légère / ultra-légère", "Mentholée", "Électronique", "Tabac chauffé", "Cigare / cigarillo"].map(option => (
-                <button
-                  key={option}
-                  onClick={() => handleCheckboxChange("cigaretteType", option)}
-                  className={`px-6 py-2.5 rounded-full border transition-all ${
-                    formData.cigaretteType.includes(option)
-                      ? "bg-blue/10 border-blue text-blue"
-                      : "border-gray-200 text-gray-600 hover:border-blue/50"
-                  }`}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-          </div>
+            <MultiChoiceButtons
+              options={["Manufacturée classique", "À rouler", "Légère / ultra-légère", "Mentholée", "Électronique", "Tabac chauffé", "Cigare / cigarillo"]}
+              values={formData.cigaretteType}
+              onChange={(v) => handleCheckboxChange("cigaretteType", v)}
+            />
+          </ProgressiveQuestion>
 
-          <div>
+          <ProgressiveQuestion visible={a("cigaretteType")}>
             <label className="block text-sm font-medium text-gray-700 mb-3">
               Nombre de cigarettes par jour <span className="text-blue">*</span>
             </label>
-            <div className="flex flex-wrap gap-3">
-              {["Moins de 5", "5 à 10", "10 à 20", "20 à 30", "30+"].map(option => (
-                <button
-                  key={option}
-                  onClick={() => handleChange("cigarettesPerDay", option)}
-                  className={`px-6 py-2.5 rounded-full border transition-all ${
-                    formData.cigarettesPerDay === option
-                      ? "bg-blue/10 border-blue text-blue"
-                      : "border-gray-200 text-gray-600 hover:border-blue/50"
-                  }`}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-          </div>
+            <ChoiceButtons
+              options={["Moins de 5", "5 à 10", "10 à 20", "20 à 30", "30+"]}
+              value={formData.cigarettesPerDay}
+              onChange={(v) => handleChange("cigarettesPerDay", v)}
+            />
+          </ProgressiveQuestion>
 
-          <div>
+          <ProgressiveQuestion visible={a("cigarettesPerDay")}>
             <label className="block text-sm font-medium text-gray-700 mb-3">
               Première cigarette après le réveil <span className="text-blue">*</span>
             </label>
-            <div className="flex flex-wrap gap-3">
-              {["— 5 min", "5–30 min", "30 min–1h", "+ 1h"].map(option => (
-                <button
-                  key={option}
-                  onClick={() => handleChange("firstCigarette", option)}
-                  className={`px-6 py-2.5 rounded-full border transition-all ${
-                    formData.firstCigarette === option
-                      ? "bg-blue/10 border-blue text-blue"
-                      : "border-gray-200 text-gray-600 hover:border-blue/50"
-                  }`}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-          </div>
+            <ChoiceButtons
+              options={["— 5 min", "5–30 min", "30 min–1h", "+ 1h"]}
+              value={formData.firstCigarette}
+              onChange={(v) => handleChange("firstCigarette", v)}
+            />
+          </ProgressiveQuestion>
 
-          <div>
+          <ProgressiveQuestion visible={a("firstCigarette")}>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Moments où vous fumez le plus <span className="text-blue">*</span>
+              Moments où tu fumes le plus <span className="text-blue">*</span>
             </label>
             <p className="text-sm text-gray-500 mb-3">Plusieurs choix possibles</p>
-            <div className="flex flex-wrap gap-3">
-              {["Au réveil", "Avec le café", "Après les repas", "En pause travail", "En voiture", "En soirée", "Avant de dormir", "Quand je m'ennuie"].map(option => (
-                <button
-                  key={option}
-                  onClick={() => handleCheckboxChange("smokingMoments", option)}
-                  className={`px-6 py-2.5 rounded-full border transition-all ${
-                    formData.smokingMoments.includes(option)
-                      ? "bg-blue/10 border-blue text-blue"
-                      : "border-gray-200 text-gray-600 hover:border-blue/50"
-                  }`}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-          </div>
+            <MultiChoiceButtons
+              options={["Au réveil", "Avec le café", "Après les repas", "En pause travail", "En voiture", "En soirée", "Avant de dormir", "Quand je m'ennuie"]}
+              values={formData.smokingMoments}
+              onChange={(v) => handleCheckboxChange("smokingMoments", v)}
+            />
+          </ProgressiveQuestion>
 
-          <div>
+          <ProgressiveQuestion visible={a("smokingMoments")}>
             <label className="block text-sm font-medium text-gray-700 mb-3">
-              Fumez-vous plus en semaine ou le week-end ?
+              Fumes-tu plus en semaine ou le week-end ?
             </label>
-            <div className="flex flex-wrap gap-3">
-              {["Semaine", "Week-end", "Pareil", "Ça varie"].map(option => (
-                <button
-                  key={option}
-                  onClick={() => handleChange("weekdayVsWeekend", option)}
-                  className={`px-6 py-2.5 rounded-full border transition-all ${
-                    formData.weekdayVsWeekend === option
-                      ? "bg-blue/10 border-blue text-blue"
-                      : "border-gray-200 text-gray-600 hover:border-blue/50"
-                  }`}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-          </div>
+            <ChoiceButtons
+              options={["Semaine", "Week-end", "Pareil", "Ça varie"]}
+              value={formData.weekdayVsWeekend}
+              onChange={(v) => handleChange("weekdayVsWeekend", v)}
+            />
+          </ProgressiveQuestion>
 
-          <div>
+          <ProgressiveQuestion visible={a("weekdayVsWeekend")}>
             <label className="block text-sm font-medium text-gray-700 mb-3">
-              Fumez-vous davantage seul(e) ou en société ?
+              Fumes-tu davantage seul(e) ou en société ?
             </label>
-            <div className="flex flex-wrap gap-3">
-              {["Plutôt seul(e)", "Plutôt en société", "Les deux pareil"].map(option => (
-                <button
-                  key={option}
-                  onClick={() => handleChange("aloneVsSocial", option)}
-                  className={`px-6 py-2.5 rounded-full border transition-all ${
-                    formData.aloneVsSocial === option
-                      ? "bg-blue/10 border-blue text-blue"
-                      : "border-gray-200 text-gray-600 hover:border-blue/50"
-                  }`}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-          </div>
+            <ChoiceButtons
+              options={["Plutôt seul(e)", "Plutôt en société", "Les deux pareil"]}
+              value={formData.aloneVsSocial}
+              onChange={(v) => handleChange("aloneVsSocial", v)}
+            />
+          </ProgressiveQuestion>
         </div>
       ),
     },
@@ -336,10 +363,10 @@ export default function DetailedForm() {
       icon: Heart,
       questions: "Q 12–19",
       content: (
-        <div className="space-y-8">
+        <div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Quelle(s) émotion(s) vous pousse(nt) à allumer une cigarette ? <span className="text-blue">*</span>
+              Quelle(s) émotion(s) te pousse(nt) à allumer une cigarette ? <span className="text-blue">*</span>
             </label>
             <p className="text-sm text-gray-500 mb-3">Plusieurs choix possibles</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -355,6 +382,7 @@ export default function DetailedForm() {
               ].map(({ label, emoji }) => (
                 <button
                   key={label}
+                  type="button"
                   onClick={() => handleCheckboxChange("emotions", label)}
                   className={`p-4 rounded-xl border transition-all text-center ${
                     formData.emotions.includes(label)
@@ -369,141 +397,82 @@ export default function DetailedForm() {
             </div>
           </div>
 
-          <div>
+          <ProgressiveQuestion visible={a("emotions")}>
             <label className="block text-sm font-medium text-gray-700 mb-3">
-              Le tabac vous aide-t-il à gérer votre stress au quotidien ? <span className="text-blue">*</span>
+              Le tabac t&apos;aide-t-il à gérer ton stress au quotidien ? <span className="text-blue">*</span>
             </label>
-            <div className="flex flex-wrap gap-3">
-              {["Oui, beaucoup", "Un peu", "Pas vraiment", "Non"].map(option => (
-                <button
-                  key={option}
-                  onClick={() => handleChange("stressManagement", option)}
-                  className={`px-6 py-2.5 rounded-full border transition-all ${
-                    formData.stressManagement === option
-                      ? "bg-blue/10 border-blue text-blue"
-                      : "border-gray-200 text-gray-600 hover:border-blue/50"
-                  }`}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-          </div>
+            <ChoiceButtons
+              options={["Oui, beaucoup", "Un peu", "Pas vraiment", "Non"]}
+              value={formData.stressManagement}
+              onChange={(v) => handleChange("stressManagement", v)}
+            />
+          </ProgressiveQuestion>
 
-          <div>
+          <ProgressiveQuestion visible={a("stressManagement")}>
             <label className="block text-sm font-medium text-gray-700 mb-3">
-              Avez-vous tendance à fumer plus en période de stress intense ?
+              As-tu tendance à fumer plus en période de stress intense ?
             </label>
-            <div className="flex flex-wrap gap-3">
-              {["Oui, beaucoup plus", "Un peu plus", "Non, pareil", "Moins"].map(option => (
-                <button
-                  key={option}
-                  onClick={() => handleChange("stressSmoking", option)}
-                  className={`px-6 py-2.5 rounded-full border transition-all ${
-                    formData.stressSmoking === option
-                      ? "bg-blue/10 border-blue text-blue"
-                      : "border-gray-200 text-gray-600 hover:border-blue/50"
-                  }`}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-          </div>
+            <ChoiceButtons
+              options={["Oui, beaucoup plus", "Un peu plus", "Non, pareil", "Moins"]}
+              value={formData.stressSmoking}
+              onChange={(v) => handleChange("stressSmoking", v)}
+            />
+          </ProgressiveQuestion>
 
-          <div>
+          <ProgressiveQuestion visible={a("stressSmoking")}>
             <label className="block text-sm font-medium text-gray-700 mb-3">
-              Ressentez-vous de la culpabilité après avoir fumé ?
+              Ressens-tu de la culpabilité après avoir fumé ?
             </label>
-            <div className="flex flex-wrap gap-3">
-              {["Toujours", "Souvent", "Parfois", "Jamais"].map(option => (
-                <button
-                  key={option}
-                  onClick={() => handleChange("guilt", option)}
-                  className={`px-6 py-2.5 rounded-full border transition-all ${
-                    formData.guilt === option
-                      ? "bg-blue/10 border-blue text-blue"
-                      : "border-gray-200 text-gray-600 hover:border-blue/50"
-                  }`}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-          </div>
+            <ChoiceButtons
+              options={["Toujours", "Souvent", "Parfois", "Jamais"]}
+              value={formData.guilt}
+              onChange={(v) => handleChange("guilt", v)}
+            />
+          </ProgressiveQuestion>
 
-          <div>
+          <ProgressiveQuestion visible={a("guilt")}>
             <label className="block text-sm font-medium text-gray-700 mb-3">
-              Avez-vous peur de prendre du poids en arrêtant ?
+              As-tu peur de prendre du poids en arrêtant ?
             </label>
-            <div className="flex flex-wrap gap-3">
-              {["Oui, très peur", "Un peu", "Non"].map(option => (
-                <button
-                  key={option}
-                  onClick={() => handleChange("weightFear", option)}
-                  className={`px-6 py-2.5 rounded-full border transition-all ${
-                    formData.weightFear === option
-                      ? "bg-blue/10 border-blue text-blue"
-                      : "border-gray-200 text-gray-600 hover:border-blue/50"
-                  }`}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-          </div>
+            <ChoiceButtons
+              options={["Oui, très peur", "Un peu", "Non"]}
+              value={formData.weightFear}
+              onChange={(v) => handleChange("weightFear", v)}
+            />
+          </ProgressiveQuestion>
 
-          <div>
+          <ProgressiveQuestion visible={a("weightFear")}>
             <label className="block text-sm font-medium text-gray-700 mb-3">
-              Avez-vous peur de ne pas réussir à arrêter ?
+              As-tu peur de ne pas réussir à arrêter ?
             </label>
-            <div className="flex flex-wrap gap-3">
-              {["Oui, très peur", "Un peu", "Non, confiant(e)"].map(option => (
-                <button
-                  key={option}
-                  onClick={() => handleChange("failureFear", option)}
-                  className={`px-6 py-2.5 rounded-full border transition-all ${
-                    formData.failureFear === option
-                      ? "bg-blue/10 border-blue text-blue"
-                      : "border-gray-200 text-gray-600 hover:border-blue/50"
-                  }`}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-          </div>
+            <ChoiceButtons
+              options={["Oui, très peur", "Un peu", "Non, confiant(e)"]}
+              value={formData.failureFear}
+              onChange={(v) => handleChange("failureFear", v)}
+            />
+          </ProgressiveQuestion>
 
-          <div>
+          <ProgressiveQuestion visible={a("failureFear")}>
             <label className="block text-sm font-medium text-gray-700 mb-3">
-              Qu'est-ce qui vous a fait rechuter lors de tentatives passées ?
+              Qu&apos;est-ce qui t&apos;a fait rechuter lors de tentatives passées ?
             </label>
-            <div className="flex flex-wrap gap-3">
-              {["Stress soudain", "Entourage fumeur", "Alcool / fête", "Manque physique intense", "Prise de poids", "Ennui / vide", "Pas de tentative passée"].map(option => (
-                <button
-                  key={option}
-                  onClick={() => handleChange("relapseCause", option)}
-                  className={`px-6 py-2.5 rounded-full border transition-all ${
-                    formData.relapseCause === option
-                      ? "bg-blue/10 border-blue text-blue"
-                      : "border-gray-200 text-gray-600 hover:border-blue/50"
-                  }`}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-          </div>
+            <ChoiceButtons
+              options={["Stress soudain", "Entourage fumeur", "Alcool / fête", "Manque physique intense", "Prise de poids", "Ennui / vide", "Pas de tentative passée"]}
+              value={formData.relapseCause}
+              onChange={(v) => handleChange("relapseCause", v)}
+            />
+          </ProgressiveQuestion>
 
-          <div>
+          <ProgressiveQuestion visible={a("relapseCause")}>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Sur 10, votre niveau de motivation à arrêter <span className="text-blue">*</span>
+              Sur 10, ton niveau de motivation à arrêter <span className="text-blue">*</span>
             </label>
             <p className="text-sm text-gray-500 mb-4">1 = pas du tout — 10 = totalement déterminé(e)</p>
             <div className="flex gap-2 mb-4">
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
                 <button
                   key={num}
+                  type="button"
                   onClick={() => handleChange("motivationLevel", num.toString())}
                   className={`flex-1 py-3 rounded-lg border transition-all font-medium ${
                     formData.motivationLevel === num.toString()
@@ -519,7 +488,7 @@ export default function DetailedForm() {
               <span>Pas motivé(e)</span>
               <span>Très motivé(e)</span>
             </div>
-          </div>
+          </ProgressiveQuestion>
         </div>
       ),
     },
@@ -528,10 +497,10 @@ export default function DetailedForm() {
       icon: DollarSign,
       questions: "Q 20–24",
       content: (
-        <div className="space-y-8">
+        <div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">
-              Combien dépensez-vous par mois en cigarettes ? <span className="text-blue">*</span>
+              Combien dépenses-tu par mois en cigarettes ? <span className="text-blue">*</span>
             </label>
             <div className="space-y-3">
               {[
@@ -543,6 +512,7 @@ export default function DetailedForm() {
               ].map(({ range, desc, yearly }) => (
                 <button
                   key={range}
+                  type="button"
                   onClick={() => handleChange("monthlyBudget", range)}
                   className={`w-full p-4 rounded-xl border transition-all text-left ${
                     formData.monthlyBudget === range
@@ -562,89 +532,49 @@ export default function DetailedForm() {
             </div>
           </div>
 
-          <div>
+          <ProgressiveQuestion visible={a("monthlyBudget")}>
             <label className="block text-sm font-medium text-gray-700 mb-3">
-              Le prix des cigarettes influence-t-il votre consommation ?
+              Le prix des cigarettes influence-t-il ta consommation ?
             </label>
-            <div className="flex flex-wrap gap-3">
-              {["Oui, beaucoup", "Un peu", "Non, pas vraiment"].map(option => (
-                <button
-                  key={option}
-                  onClick={() => handleChange("priceInfluence", option)}
-                  className={`px-6 py-2.5 rounded-full border transition-all ${
-                    formData.priceInfluence === option
-                      ? "bg-blue/10 border-blue text-blue"
-                      : "border-gray-200 text-gray-600 hover:border-blue/50"
-                  }`}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-          </div>
+            <ChoiceButtons
+              options={["Oui, beaucoup", "Un peu", "Non, pas vraiment"]}
+              value={formData.priceInfluence}
+              onChange={(v) => handleChange("priceInfluence", v)}
+            />
+          </ProgressiveQuestion>
 
-          <div>
+          <ProgressiveQuestion visible={a("priceInfluence")}>
             <label className="block text-sm font-medium text-gray-700 mb-3">
-              L'aspect financier est-il une motivation pour arrêter ?
+              L&apos;aspect financier est-il une motivation pour arrêter ?
             </label>
-            <div className="flex flex-wrap gap-3">
-              {["Oui, c'est ma raison principale", "Oui, parmi d'autres raisons", "Non, pas vraiment"].map(option => (
-                <button
-                  key={option}
-                  onClick={() => handleChange("financialMotivation", option)}
-                  className={`px-6 py-2.5 rounded-full border transition-all ${
-                    formData.financialMotivation === option
-                      ? "bg-blue/10 border-blue text-blue"
-                      : "border-gray-200 text-gray-600 hover:border-blue/50"
-                  }`}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-          </div>
+            <ChoiceButtons
+              options={["Oui, c'est ma raison principale", "Oui, parmi d'autres raisons", "Non, pas vraiment"]}
+              value={formData.financialMotivation}
+              onChange={(v) => handleChange("financialMotivation", v)}
+            />
+          </ProgressiveQuestion>
 
-          <div>
+          <ProgressiveQuestion visible={a("financialMotivation")}>
             <label className="block text-sm font-medium text-gray-700 mb-3">
-              Si vous économisiez cet argent, à quoi le destineriez-vous ?
+              Si tu économisais cet argent, à quoi le destinerais-tu ?
             </label>
-            <div className="flex flex-wrap gap-3">
-              {["Voyages", "Épargne", "Sport / bien-être", "Ma famille", "Alimentation", "Pas encore défini"].map(option => (
-                <button
-                  key={option}
-                  onClick={() => handleCheckboxChange("savingsDestination", option)}
-                  className={`px-6 py-2.5 rounded-full border transition-all ${
-                    formData.savingsDestination.includes(option)
-                      ? "bg-blue/10 border-blue text-blue"
-                      : "border-gray-200 text-gray-600 hover:border-blue/50"
-                  }`}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-          </div>
+            <MultiChoiceButtons
+              options={["Voyages", "Épargne", "Sport / bien-être", "Ma famille", "Alimentation", "Pas encore défini"]}
+              values={formData.savingsDestination}
+              onChange={(v) => handleCheckboxChange("savingsDestination", v)}
+            />
+          </ProgressiveQuestion>
 
-          <div>
+          <ProgressiveQuestion visible={a("savingsDestination")}>
             <label className="block text-sm font-medium text-gray-700 mb-3">
-              Avez-vous calculé ce que vous économiseriez en arrêtant ?
+              As-tu calculé ce que tu économiserais en arrêtant ?
             </label>
-            <div className="flex flex-wrap gap-3">
-              {["Oui, et c'est motivant", "Oui, mais pas décisif", "Non, jamais calculé"].map(option => (
-                <button
-                  key={option}
-                  onClick={() => handleChange("calculatedSavings", option)}
-                  className={`px-6 py-2.5 rounded-full border transition-all ${
-                    formData.calculatedSavings === option
-                      ? "bg-blue/10 border-blue text-blue"
-                      : "border-gray-200 text-gray-600 hover:border-blue/50"
-                  }`}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-          </div>
+            <ChoiceButtons
+              options={["Oui, et c'est motivant", "Oui, mais pas décisif", "Non, jamais calculé"]}
+              value={formData.calculatedSavings}
+              onChange={(v) => handleChange("calculatedSavings", v)}
+            />
+          </ProgressiveQuestion>
         </div>
       ),
     },
@@ -653,52 +583,32 @@ export default function DetailedForm() {
       icon: Target,
       questions: "Q 25–27",
       content: (
-        <div className="space-y-8">
+        <div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">
-              Quand souhaitez-vous arrêter de fumer ? <span className="text-blue">*</span>
+              Quand souhaites-tu arrêter de fumer ? <span className="text-blue">*</span>
             </label>
-            <div className="flex flex-wrap gap-3">
-              {["Immédiatement", "Dans la semaine", "Dans le mois", "D'ici 3 mois", "Pas encore décidé"].map(option => (
-                <button
-                  key={option}
-                  onClick={() => handleChange("quitDate", option)}
-                  className={`px-6 py-2.5 rounded-full border transition-all ${
-                    formData.quitDate === option
-                      ? "bg-blue/10 border-blue text-blue"
-                      : "border-gray-200 text-gray-600 hover:border-blue/50"
-                  }`}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
+            <ChoiceButtons
+              options={["Immédiatement", "Dans la semaine", "Dans le mois", "D'ici 3 mois", "Pas encore décidé"]}
+              value={formData.quitDate}
+              onChange={(v) => handleChange("quitDate", v)}
+            />
           </div>
 
-          <div>
+          <ProgressiveQuestion visible={a("quitDate")}>
             <label className="block text-sm font-medium text-gray-700 mb-3">
-              Quel type d'accompagnement préférez-vous ?
+              Quel type d&apos;accompagnement préfères-tu ?
             </label>
-            <div className="flex flex-wrap gap-3">
-              {["Suivi individuel", "Groupe de soutien", "Coaching en ligne", "Exercices pratiques", "Méditation / relaxation", "Suivi par e-mail"].map(option => (
-                <button
-                  key={option}
-                  onClick={() => handleCheckboxChange("supportType", option)}
-                  className={`px-6 py-2.5 rounded-full border transition-all ${
-                    formData.supportType.includes(option)
-                      ? "bg-blue/10 border-blue text-blue"
-                      : "border-gray-200 text-gray-600 hover:border-blue/50"
-                  }`}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-          </div>
+            <MultiChoiceButtons
+              options={["Suivi individuel", "Groupe de soutien", "Coaching en ligne", "Exercices pratiques", "Méditation / relaxation", "Suivi par e-mail"]}
+              values={formData.supportType}
+              onChange={(v) => handleCheckboxChange("supportType", v)}
+            />
+          </ProgressiveQuestion>
 
-          <div>
+          <ProgressiveQuestion visible={a("supportType")}>
             <label className="block text-sm font-medium text-gray-700 mb-3">
-              Un message pour votre coach ?
+              Un message pour ton coach ?
             </label>
             <textarea
               value={formData.message}
@@ -707,7 +617,7 @@ export default function DetailedForm() {
               rows={5}
               className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue/50 focus:border-transparent outline-none resize-none"
             />
-          </div>
+          </ProgressiveQuestion>
         </div>
       ),
     },
@@ -715,7 +625,7 @@ export default function DetailedForm() {
 
   const handleSubmit = () => {
     console.log("Form submitted:", formData);
-    alert("Votre bilan a été envoyé avec succès ! Un coach vous contactera très prochainement.");
+    alert("Ton bilan a été envoyé avec succès ! Un coach te contactera très prochainement.");
   };
 
   return (
@@ -739,23 +649,24 @@ export default function DetailedForm() {
               const isCompleted = validateSection(index);
               const isCurrent = index === currentStep;
               const isAccessible = index === 0 || validateSection(index - 1);
-              
+
               return (
                 <div key={index} className="flex items-center flex-1">
                   <button
+                    type="button"
                     onClick={() => isAccessible && setCurrentStep(index)}
                     disabled={!isAccessible}
                     className={`flex flex-col items-center gap-2 transition-all ${
-                      isAccessible ? 'cursor-pointer' : 'cursor-not-allowed opacity-40'
+                      isAccessible ? "cursor-pointer" : "cursor-not-allowed opacity-40"
                     }`}
                   >
                     <div
                       className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all ${
                         isCurrent
-                          ? 'bg-blue text-white scale-110 shadow-lg'
+                          ? "bg-blue text-white scale-110 shadow-lg"
                           : isCompleted
-                          ? 'bg-blue/10 text-blue'
-                          : 'bg-gray-100 text-gray-400'
+                            ? "bg-blue/10 text-blue"
+                            : "bg-gray-100 text-gray-400"
                       }`}
                     >
                       {isCompleted && !isCurrent ? (
@@ -766,14 +677,14 @@ export default function DetailedForm() {
                     </div>
                     <span
                       className={`text-xs font-medium text-center hidden md:block ${
-                        isCurrent ? 'text-blue' : isCompleted ? 'text-gray-700' : 'text-gray-400'
+                        isCurrent ? "text-blue" : isCompleted ? "text-gray-700" : "text-gray-400"
                       }`}
                     >
                       {section.title}
                     </span>
                   </button>
                   {index < sections.length - 1 && (
-                    <div className={`flex-1 h-0.5 mx-2 ${isCompleted ? 'bg-blue' : 'bg-gray-200'}`} />
+                    <div className={`flex-1 h-0.5 mx-2 ${isCompleted ? "bg-blue" : "bg-gray-200"}`} />
                   )}
                 </div>
               );
@@ -800,13 +711,15 @@ export default function DetailedForm() {
                     return <Icon className="w-5 h-5 md:w-6 md:h-6 text-blue" />;
                   })()}
                 </div>
-                <h3 className="text-xl md:text-2xl font-helvetica text-gray-800 truncate">{sections[currentStep].title}</h3>
+                <h3 className="text-xl md:text-2xl font-helvetica text-gray-800 truncate">
+                  {sections[currentStep].title}
+                </h3>
               </div>
-              <span className="text-sm text-gray-400 font-medium shrink-0">{sections[currentStep].questions}</span>
+              <span className="text-sm text-gray-400 font-medium shrink-0">
+                {sections[currentStep].questions}
+              </span>
             </div>
-            <div className="px-4 md:px-8 py-6 md:py-8">
-              {sections[currentStep].content}
-            </div>
+            <div className="px-4 md:px-8 py-6 md:py-8">{sections[currentStep].content}</div>
           </motion.div>
         </AnimatePresence>
 
@@ -826,12 +739,13 @@ export default function DetailedForm() {
 
           <div className="flex gap-3 w-full md:w-auto">
             <button
+              type="button"
               onClick={handlePrevious}
               disabled={currentStep === 0}
               className={`flex-1 md:flex-none inline-flex items-center justify-center gap-2 px-5 md:px-8 py-3 rounded-full transition-all text-base md:text-lg font-medium ${
                 currentStep === 0
-                  ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300 shadow hover:shadow-lg'
+                  ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                  : "bg-gray-200 text-gray-700 hover:bg-gray-300 shadow hover:shadow-lg"
               }`}
             >
               <ArrowLeft className="w-5 h-5" />
@@ -840,12 +754,13 @@ export default function DetailedForm() {
 
             {currentStep < sections.length - 1 ? (
               <button
+                type="button"
                 onClick={handleNext}
                 disabled={!canGoNext}
                 className={`flex-1 md:flex-none inline-flex items-center justify-center gap-2 px-5 md:px-8 py-3 rounded-full transition-all text-base md:text-lg font-medium ${
                   !canGoNext
-                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                    : 'bg-blue text-white hover:bg-blue/90 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5'
+                    ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                    : "bg-blue text-white hover:bg-blue/90 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                 }`}
               >
                 Suivant
@@ -853,12 +768,13 @@ export default function DetailedForm() {
               </button>
             ) : (
               <button
+                type="button"
                 onClick={handleSubmit}
                 disabled={!canGoNext}
                 className={`flex-1 md:flex-none inline-flex items-center justify-center gap-2 px-5 md:px-8 py-3 rounded-full transition-all text-base md:text-lg font-medium ${
                   !canGoNext
-                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                    : 'bg-blue text-white hover:bg-blue/90 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5'
+                    ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                    : "bg-blue text-white hover:bg-blue/90 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                 }`}
               >
                 Envoyer mon bilan
@@ -869,7 +785,7 @@ export default function DetailedForm() {
         </div>
 
         <p className="text-sm text-gray-400 text-center mt-6">
-          {!canGoNext && "Veuillez remplir tous les champs obligatoires (*) pour continuer"}
+          {!canGoNext && "Remplis les champs obligatoires (*) pour continuer"}
         </p>
       </div>
     </section>
