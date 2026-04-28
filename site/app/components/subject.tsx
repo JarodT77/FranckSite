@@ -1,6 +1,6 @@
 "use client";
 
-import { Brain, HeartPulse, ShieldAlert } from "lucide-react";
+import { Brain, HeartPulse, ShieldAlert, ChevronDown } from "lucide-react";
 import { motion } from "motion/react";
 
 const problems = [
@@ -28,7 +28,7 @@ export default function Subject() {
     return (
         <section id="subject" className="mx-4 md:mx-40 mt-12 md:mt-24">
             <h2 className="text-2xl md:text-4xl font-bold font-helvetica text-center">
-                Tu veux arrêter ...<br/><span className="text-blue"> mais quelque chose te bloque ?</span>
+                T&apos;arrives pas arreter ?<br/><span className="text-black"> mais les conséquences sont déja là</span>
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-8 md:mt-12">
                 {problems.map((problem, index) => {
@@ -36,9 +36,9 @@ export default function Subject() {
                   return (
                     <div
                       key={index}
-                      className="group flex flex-col bg-white border border-gray-200 rounded-2xl p-8 hover:border-blue/30 hover:shadow-lg transition-all duration-300"
+                      className="group flex flex-col bg-white border border-gray-200 rounded-2xl p-8 hover:border-red-500/30 hover:shadow-lg transition-all duration-300"
                     >
-                      <div className="w-14 h-14 bg-blue/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-blue transition-colors duration-300 [&_svg]:text-blue [&_svg]:group-hover:text-white">
+                      <div className="w-14 h-14 bg-red-400/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-red-500 transition-colors duration-300 [&_svg]:text-red-500 [&_svg]:group-hover:text-white">
                         <Icon className="w-7 h-7 transition-colors duration-300" />
                       </div>
                       <h3 className="text-xl md:text-2xl font-bold font-helvetica text-gray-900 mb-4">
@@ -59,7 +59,7 @@ export default function Subject() {
                     transition={{ duration: 0.6 }}
                     className="text-2xl md:text-4xl font-bold font-helvetica text-center mt-12 md:mt-24"
                 >
-                    Tu te reconnais dans ces problèmes ?<br/><span className="text-blue"> Arrêter de fumer ne devrait pas être une lutte permanente</span>
+                    Tu te reconnais dans ces problèmes ?<br/><span className="text-black"> Arrêter de fumer ne devrait pas être une lutte permanente</span>
                 </motion.h2>
                 <div className="flex flex-col md:flex-row gap-8 mt-8 md:mt-12">
                     {/* Colonne gauche — Ma méthode */}
@@ -70,7 +70,7 @@ export default function Subject() {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="flex-1 self-start flex flex-col gap-6"
                     >
-                        <div className="rounded-2xl bg-linear-to-br from-blue-950 via-blue-900 to-blue-800 p-8 md:p-10">
+                        <div className="rounded-2xl bg-linear-to-br from-black via-red-800 to-red-900 p-8 md:p-10">
                             <h3 className="text-xl md:text-2xl font-bold font-poppins text-white">
                                 Une méthode structurée et efficace pour t&apos;aider à arrêter de fumer durablement, sans rechute et sans souffrance.
                             </h3>
@@ -83,7 +83,7 @@ export default function Subject() {
                                   { number: "4", title: "Autonomie", desc: "Tu deviens acteur de ton changement" },
                                 ].map((pillar) => (
                                   <div key={pillar.number} className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10">
-                                    <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white text-blue font-bold text-lg mb-3">
+                                    <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-gray-700 text-red-500 font-bold text-lg mb-3">
                                       {pillar.number}
                                     </span>
                                     <h4 className="text-white font-bold text-lg mb-1">{pillar.title}</h4>
@@ -93,9 +93,9 @@ export default function Subject() {
                             </div>
                         </div>
                         <div className="hidden md:flex flex-col items-center gap-6 mt-12">
-                            <h2 className="text-2xl md:text-4xl font-bold font-helvetica text-center"> Tu es prêt à vraiment arrêter de fumer ?</h2>
-                            <a href="#contact" className="w-1/2 text-center bg-blue text-white font-bold font-poppins text-lg py-4 rounded-full hover:bg-blue/90 transition-colors">
-                                Remplir le formulaire
+                            <h2 className="text-2xl md:text-4xl font-bold font-helvetica text-center">DÉCIDE, AGIS, LIBÈRE TOI</h2>
+                            <a href="#contact" className="w-1/2 text-center bg-red-400 text-red-900 font-bold font-poppins text-lg py-4 rounded-full hover:bg-red-500 hover:text-white transition-colors">
+                                Je veux arrêter de fumer
                             </a>
                         </div>
                     </motion.div>
@@ -109,11 +109,11 @@ export default function Subject() {
                         className="flex-1 flex flex-col gap-6"
                     >
                         <h2 className="text-2xl md:text-3xl font-bold font-helvetica text-center md:text-left">
-                            On traite la <span className="text-blue">cause</span>, pas seulement les symptômes
+                            On traite la <span className="text-red-500">cause</span>, pas seulement les symptômes
                         </h2>
 
-                        <div className="flex-1 bg-gray-50 rounded-2xl p-6 md:p-8 border border-gray-200">
-                            <h3 className="text-xl font-bold font-poppins mb-5">On travaille ensemble pour :</h3>
+                        <div className="flex-1 bg-linear-to-br from-black to-gray-600 rounded-2xl p-6 md:p-8 border border-gray-200">
+                            <h3 className="text-xl font-bold font-poppins mb-5 text-white">On travaille ensemble pour :</h3>
                             <div className="space-y-4">
                                 {[
                                     { icon: "🎯", text: "Identifier tes déclencheurs", desc: "Comprendre ce qui te pousse à fumer" },
@@ -121,10 +121,10 @@ export default function Subject() {
                                     { icon: "🛠️", text: "Mettre en place des substituts", desc: "Efficaces et adaptés à toi" },
                                     { icon: "📊", text: "Ajuster en temps réel", desc: "Selon tes progrès et difficultés" },
                                 ].map((item, index) => (
-                                    <div key={index} className="flex gap-4 items-center bg-white rounded-xl p-4 border border-gray-100 shadow-sm">
+                                    <div key={index} className="flex gap-4 items-center bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 shadow-sm">
                                       <span className="text-2xl shrink-0">{item.icon}</span>
                                       <div>
-                                        <p className="font-semibold text-gray-900">{item.text}</p>
+                                        <p className="font-semibold text-white">{item.text}</p>
                                         <p className="text-gray-500 text-sm">{item.desc}</p>
                                       </div>
                                     </div>
@@ -132,13 +132,13 @@ export default function Subject() {
                             </div>
                         </div>
 
-                        <div className="bg-blue/5 border border-blue/20 rounded-2xl p-6 md:p-8">
-                            <p className="text-blue font-semibold text-lg mb-3">Pourquoi ça marche ?</p>
+                        <div className="bg-white border border-red-500/20 rounded-2xl p-6 md:p-8">
+                            <p className="text-red-500 font-semibold text-lg mb-3">Pourquoi ça marche ?</p>
                             <p className="text-gray-800 text-lg leading-relaxed">
-                              Parce qu&apos;on ne se contente pas de <span className="text-blue font-bold">supprimer</span> la cigarette.
+                              Parce qu&apos;on ne se contente pas de <span className="text-red-500 font-bold">supprimer</span> la cigarette.
                             </p>
                             <p className="text-gray-600 text-lg leading-relaxed mt-2">
-                              On <span className="text-gray-900 font-semibold">reconstruit </span>ton rapport au stress, à l&apos;ennui, aux émotions.
+                              On <span className="text-red-500 font-semibold">reconstruit </span>ton rapport au stress, à l&apos;ennui, aux émotions.
                             </p>
                             <p className="text-gray-500 mt-2">
                               C&apos;est un changement profond. Pas un patch temporaire.
@@ -153,14 +153,21 @@ export default function Subject() {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="flex md:hidden flex-col items-center gap-6 mt-12"
                 >
-                    <h2 className="text-2xl font-bold font-helvetica text-center"> Tu es prêt à vraiment arrêter de fumer ?</h2>
-                    <a href="#contact" className="w-3/4 text-center bg-blue text-white font-bold font-poppins text-lg py-4 rounded-full hover:bg-blue/90 transition-colors">
-                        Remplir le formulaire
+                    <h2 className="text-2xl font-bold font-helvetica text-center"> DÉCIDE, AGIS, LIBÈRE TOI</h2>
+                    <a href="#contact" className="w-3/4 text-center bg-red-400 text-red-900 font-bold font-poppins text-lg py-4 rounded-full hover:bg-red-500 hover:text-white transition-colors">
+                        Je veux arrêter de fumer
                     </a>
                 </motion.div>
             </div>
 
-
+            <div className="flex justify-center mt-12 md:mt-16">
+              <a
+                href="#bienfaits"
+                className="w-12 h-12 rounded-full border-2 border-red-400 flex items-center justify-center hover:border-red-500 hover:bg-red-500/5 transition-all"
+              >
+                <ChevronDown className="w-5 h-5 text-red-500 animate-bounce" />
+              </a>
+            </div>
         </section>
     );
 }

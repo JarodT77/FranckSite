@@ -1,4 +1,4 @@
-import { Star, Quote } from "lucide-react";
+import { Star, Quote, ChevronDown } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 const testimonials = [
@@ -36,11 +36,11 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section id="temoignages" className="px-4 md:px-6 bg-white-alt">
+    <section id="temoignages" className="px-4 mb-16 md:px-6 bg-white-alt">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-bold font-helvetica mb-4">
-            Ils ont réussi, <span className="text-blue">pourquoi pas toi ?</span>
+            Ils ont réussi, <span>pourquoi pas toi ?</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto font-poppins">
             Découvre les témoignages inspirants de personnes qui ont repris le
@@ -52,9 +52,9 @@ export default function Testimonials() {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="bg-white border border-gray-200 p-8 rounded-2xl hover:border-blue/30 hover:shadow-lg transition-all duration-300"
+              className="bg-white border border-gray-200 p-8 rounded-2xl hover:border-red-500/30 hover:shadow-lg transition-all duration-300"
             >
-              <Quote className="w-8 h-8 text-blue/20 mb-4" />
+              <Quote className="w-8 h-8 text-red-500/20 mb-4" />
 
               <p className="text-gray-700 leading-relaxed font-poppins mb-6">
                 &ldquo;{testimonial.testimonial}&rdquo;
@@ -64,7 +64,7 @@ export default function Testimonials() {
                 {Array.from({ length: testimonial.rating }).map((_, i) => (
                   <Star
                     key={i}
-                    className="w-4 h-4 fill-blue text-blue"
+                    className="w-4 h-4 fill-red-500 text-red-500"
                   />
                 ))}
               </div>
@@ -79,7 +79,7 @@ export default function Testimonials() {
                   <h4 className="font-bold font-helvetica text-gray-900">
                     {testimonial.name}, {testimonial.age} ans
                   </h4>
-                  <p className="text-sm text-blue font-poppins">
+                  <p className="text-sm text-red-500 font-poppins">
                     {testimonial.smokingYears}
                   </p>
                 </div>
@@ -87,6 +87,15 @@ export default function Testimonials() {
             </div>
           ))}
         </div>
+      </div>
+
+      <div className="flex justify-center mt-12 md:mt-16">
+        <a
+          href="#cta"
+          className="w-12 h-12 rounded-full border-2 border-red-400 flex items-center justify-center hover:border-red-500 hover:bg-red-500/5 transition-all"
+        >
+          <ChevronDown className="w-5 h-5 text-red-500 animate-bounce" />
+        </a>
       </div>
     </section>
   );

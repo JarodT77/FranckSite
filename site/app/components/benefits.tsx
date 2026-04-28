@@ -1,4 +1,4 @@
-import { HeartPulse, Wallet, Clock, Smile } from "lucide-react";
+import { HeartPulse, Wallet, Clock, Smile, ChevronDown } from "lucide-react";
 
 const benefits = [
   {
@@ -29,7 +29,7 @@ const benefits = [
 
 export default function Benefits() {
   return (
-    <section className="py-20 px-6 bg-linear-to-br from-blue-950 via-blue-900 to-blue-800 text-white mt-12">
+    <section id="bienfaits" className="py-20 px-6 bg-linear-to-br from-black to-gray-600 text-white mt-12">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold font-helvetica mb-4">
@@ -49,8 +49,8 @@ export default function Benefits() {
                 className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/15 hover:bg-white/15 transition-colors"
               >
                 <div className="flex items-start gap-5">
-                  <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center shrink-0">
-                    <Icon className="w-7 h-7 text-blue" />
+                  <div className="w-14 h-14 bg-gray-800 rounded-xl flex items-center justify-center shrink-0">
+                    <Icon className="w-7 h-7 text-red-500" />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl md:text-2xl font-bold font-poppins mb-2">
@@ -59,7 +59,7 @@ export default function Benefits() {
                     <p className="text-blue-100 leading-relaxed mb-4 font-poppins">
                       {benefit.description}
                     </p>
-                    <div className="inline-block bg-white/15 text-white px-4 py-2 rounded-full text-sm font-semibold font-poppins">
+                    <div className="inline-block bg-red-500/50 text-white px-4 py-2 rounded-full text-sm font-semibold font-poppins">
                       {benefit.stats}
                     </div>
                   </div>
@@ -68,6 +68,15 @@ export default function Benefits() {
             );
           })}
         </div>
+      </div>
+
+      <div className="flex justify-center mt-12 md:mt-16">
+        <a
+          href="#services"
+          className="w-12 h-12 rounded-full border-2 border-red-400 flex items-center justify-center hover:border-red-500 hover:bg-red-500/5 transition-all"
+        >
+          <ChevronDown className="w-5 h-5 text-red-500 animate-bounce" />
+        </a>
       </div>
     </section>
   );

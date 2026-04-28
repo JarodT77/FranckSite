@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { User, Cigarette, Heart, DollarSign, Target, ArrowRight, ArrowLeft, Check } from "lucide-react";
+import { User, Cigarette, Heart, DollarSign, Target, ArrowRight, ArrowLeft, Check, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 type FormData = {
@@ -77,8 +77,8 @@ function ChoiceButtons({
           onClick={() => onChange(option)}
           className={`px-6 py-2.5 rounded-full border transition-all ${
             value === option
-              ? "bg-blue/10 border-blue text-blue"
-              : "border-gray-200 text-gray-600 hover:border-blue/50"
+              ? "bg-red-500/10 border-red-500 text-red-500"
+              : "border-gray-200 text-gray-600 hover:border-red-500/50"
           }`}
         >
           {option}
@@ -106,8 +106,8 @@ function MultiChoiceButtons({
           onClick={() => onChange(option)}
           className={`px-6 py-2.5 rounded-full border transition-all ${
             values.includes(option)
-              ? "bg-blue/10 border-blue text-blue"
-              : "border-gray-200 text-gray-600 hover:border-blue/50"
+              ? "bg-red-500/10 border-red-500 text-red-500"
+              : "border-gray-200 text-gray-600 hover:border-red-500/50"
           }`}
         >
           {option}
@@ -222,38 +222,38 @@ export default function DetailedForm() {
         <div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Prénom <span className="text-blue">*</span>
+              Prénom <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
               value={formData.firstName}
               onChange={(e) => handleChange("firstName", e.target.value)}
               placeholder="Ton prénom"
-              className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue/50 focus:border-transparent outline-none"
+              className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500/50 focus:border-transparent outline-none"
             />
           </div>
           <ProgressiveQuestion visible={a("firstName")}>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Âge <span className="text-blue">*</span>
+              Âge <span className="text-red-500">*</span>
             </label>
             <input
               type="number"
               value={formData.age}
               onChange={(e) => handleChange("age", e.target.value)}
               placeholder="Ex : 34"
-              className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue/50 focus:border-transparent outline-none"
+              className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500/50 focus:border-transparent outline-none"
             />
           </ProgressiveQuestion>
           <ProgressiveQuestion visible={a("age")}>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              E-mail <span className="text-blue">*</span>
+              E-mail <span className="text-red-500">*</span>
             </label>
             <input
               type="email"
               value={formData.email}
               onChange={(e) => handleChange("email", e.target.value)}
               placeholder="vous@email.com"
-              className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue/50 focus:border-transparent outline-none"
+              className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500/50 focus:border-transparent outline-none"
             />
           </ProgressiveQuestion>
           <ProgressiveQuestion visible={a("email")}>
@@ -265,7 +265,7 @@ export default function DetailedForm() {
               value={formData.phone}
               onChange={(e) => handleChange("phone", e.target.value)}
               placeholder="06 00 00 00 00"
-              className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue/50 focus:border-transparent outline-none"
+              className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500/50 focus:border-transparent outline-none"
             />
           </ProgressiveQuestion>
         </div>
@@ -279,7 +279,7 @@ export default function DetailedForm() {
         <div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">
-              Depuis combien d&apos;années fumes-tu ? <span className="text-blue">*</span>
+              Depuis combien d&apos;années fumes-tu ? <span className="text-red-500">*</span>
             </label>
             <ChoiceButtons
               options={["Moins d'1 an", "1 à 5 ans", "5 à 10 ans", "10 à 20 ans", "+ de 20 ans"]}
@@ -290,7 +290,7 @@ export default function DetailedForm() {
 
           <ProgressiveQuestion visible={a("smokingYears")}>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Type(s) de cigarettes <span className="text-blue">*</span>
+              Type(s) de cigarettes <span className="text-red-500">*</span>
             </label>
             <p className="text-sm text-gray-500 mb-3">Plusieurs choix possibles</p>
             <MultiChoiceButtons
@@ -302,7 +302,7 @@ export default function DetailedForm() {
 
           <ProgressiveQuestion visible={a("cigaretteType")}>
             <label className="block text-sm font-medium text-gray-700 mb-3">
-              Nombre de cigarettes par jour <span className="text-blue">*</span>
+              Nombre de cigarettes par jour <span className="text-red-500">*</span>
             </label>
             <ChoiceButtons
               options={["Moins de 5", "5 à 10", "10 à 20", "20 à 30", "30+"]}
@@ -313,7 +313,7 @@ export default function DetailedForm() {
 
           <ProgressiveQuestion visible={a("cigarettesPerDay")}>
             <label className="block text-sm font-medium text-gray-700 mb-3">
-              Première cigarette après le réveil <span className="text-blue">*</span>
+              Première cigarette après le réveil <span className="text-red-500">*</span>
             </label>
             <ChoiceButtons
               options={["— 5 min", "5–30 min", "30 min–1h", "+ 1h"]}
@@ -324,7 +324,7 @@ export default function DetailedForm() {
 
           <ProgressiveQuestion visible={a("firstCigarette")}>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Moments où tu fumes le plus <span className="text-blue">*</span>
+              Moments où tu fumes le plus <span className="text-red-500">*</span>
             </label>
             <p className="text-sm text-gray-500 mb-3">Plusieurs choix possibles</p>
             <MultiChoiceButtons
@@ -366,7 +366,7 @@ export default function DetailedForm() {
         <div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Quelle(s) émotion(s) te pousse(nt) à allumer une cigarette ? <span className="text-blue">*</span>
+              Quelle(s) émotion(s) te pousse(nt) à allumer une cigarette ? <span className="text-red-500">*</span>
             </label>
             <p className="text-sm text-gray-500 mb-3">Plusieurs choix possibles</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -386,8 +386,8 @@ export default function DetailedForm() {
                   onClick={() => handleCheckboxChange("emotions", label)}
                   className={`p-4 rounded-xl border transition-all text-center ${
                     formData.emotions.includes(label)
-                      ? "bg-blue/10 border-blue"
-                      : "border-gray-200 hover:border-blue/50"
+                      ? "bg-red-500/10 border-red-500"
+                      : "border-gray-200 hover:border-red-500/50"
                   }`}
                 >
                   <div className="text-3xl mb-2">{emoji}</div>
@@ -399,7 +399,7 @@ export default function DetailedForm() {
 
           <ProgressiveQuestion visible={a("emotions")}>
             <label className="block text-sm font-medium text-gray-700 mb-3">
-              Le tabac t&apos;aide-t-il à gérer ton stress au quotidien ? <span className="text-blue">*</span>
+              Le tabac t&apos;aide-t-il à gérer ton stress au quotidien ? <span className="text-red-500">*</span>
             </label>
             <ChoiceButtons
               options={["Oui, beaucoup", "Un peu", "Pas vraiment", "Non"]}
@@ -465,7 +465,7 @@ export default function DetailedForm() {
 
           <ProgressiveQuestion visible={a("relapseCause")}>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Sur 10, ton niveau de motivation à arrêter <span className="text-blue">*</span>
+              Sur 10, ton niveau de motivation à arrêter <span className="text-red-500">*</span>
             </label>
             <p className="text-sm text-gray-500 mb-4">1 = pas du tout — 10 = totalement déterminé(e)</p>
             <div className="flex gap-2 mb-4">
@@ -476,8 +476,8 @@ export default function DetailedForm() {
                   onClick={() => handleChange("motivationLevel", num.toString())}
                   className={`flex-1 py-3 rounded-lg border transition-all font-medium ${
                     formData.motivationLevel === num.toString()
-                      ? "bg-blue border-blue text-white"
-                      : "border-gray-200 text-gray-600 hover:border-blue/50"
+                      ? "bg-red-500 border-red-500 text-white"
+                      : "border-gray-200 text-gray-600 hover:border-red-500/50"
                   }`}
                 >
                   {num}
@@ -500,7 +500,7 @@ export default function DetailedForm() {
         <div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">
-              Combien dépenses-tu par mois en cigarettes ? <span className="text-blue">*</span>
+              Combien dépenses-tu par mois en cigarettes ? <span className="text-red-500">*</span>
             </label>
             <div className="space-y-3">
               {[
@@ -516,8 +516,8 @@ export default function DetailedForm() {
                   onClick={() => handleChange("monthlyBudget", range)}
                   className={`w-full p-4 rounded-xl border transition-all text-left ${
                     formData.monthlyBudget === range
-                      ? "bg-blue/10 border-blue"
-                      : "border-gray-200 hover:border-blue/50"
+                      ? "bg-red-500/10 border-red-500"
+                      : "border-gray-200 hover:border-red-500/50"
                   }`}
                 >
                   <div className="flex justify-between items-center">
@@ -525,7 +525,7 @@ export default function DetailedForm() {
                       <div className="font-bold text-gray-900">{range}</div>
                       <div className="text-sm text-gray-500">{desc}</div>
                     </div>
-                    <div className="text-blue font-medium">{yearly}</div>
+                    <div className="text-red-500 font-medium">{yearly}</div>
                   </div>
                 </button>
               ))}
@@ -586,7 +586,7 @@ export default function DetailedForm() {
         <div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">
-              Quand souhaites-tu arrêter de fumer ? <span className="text-blue">*</span>
+              Quand souhaites-tu arrêter de fumer ? <span className="text-red-500">*</span>
             </label>
             <ChoiceButtons
               options={["Immédiatement", "Dans la semaine", "Dans le mois", "D'ici 3 mois", "Pas encore décidé"]}
@@ -615,7 +615,7 @@ export default function DetailedForm() {
               onChange={(e) => handleChange("message", e.target.value)}
               placeholder="Contexte particulier, attentes, questions…"
               rows={5}
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue/50 focus:border-transparent outline-none resize-none"
+              className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500/50 focus:border-transparent outline-none resize-none"
             />
           </ProgressiveQuestion>
         </div>
@@ -634,7 +634,7 @@ export default function DetailedForm() {
         {/* En-tête */}
         <div className="text-center mb-12">
           <h1 className="text-3xl md:text-4xl font-bold font-helvetica mb-4">
-            Bilan personnel <span className="text-blue">confidentiel</span>
+            Bilan personnel <span className="text-red-500">confidentiel</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto font-poppins">
             Réponds à ces questions pour permettre à ton coach de préparer un programme 100 % adapté à ton profil.
@@ -663,9 +663,9 @@ export default function DetailedForm() {
                     <div
                       className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all ${
                         isCurrent
-                          ? "bg-blue text-white scale-110 shadow-lg"
+                          ? "bg-red-500 text-white scale-110 shadow-lg"
                           : isCompleted
-                            ? "bg-blue/10 text-blue"
+                            ? "bg-red-500/10 text-red-500"
                             : "bg-gray-100 text-gray-400"
                       }`}
                     >
@@ -677,14 +677,14 @@ export default function DetailedForm() {
                     </div>
                     <span
                       className={`text-xs font-medium text-center hidden md:block ${
-                        isCurrent ? "text-blue" : isCompleted ? "text-gray-700" : "text-gray-400"
+                        isCurrent ? "text-red-500" : isCompleted ? "text-gray-700" : "text-gray-400"
                       }`}
                     >
                       {section.title}
                     </span>
                   </button>
                   {index < sections.length - 1 && (
-                    <div className={`flex-1 h-0.5 mx-2 ${isCompleted ? "bg-blue" : "bg-gray-200"}`} />
+                    <div className={`flex-1 h-0.5 mx-2 ${isCompleted ? "bg-red-500" : "bg-gray-200"}`} />
                   )}
                 </div>
               );
@@ -705,10 +705,10 @@ export default function DetailedForm() {
           >
             <div className="border-b border-gray-100 px-4 md:px-8 py-5 md:py-6 flex items-center justify-between gap-2">
               <div className="flex items-center gap-3 md:gap-4 min-w-0">
-                <div className="w-10 h-10 md:w-12 md:h-12 bg-linear-to-br from-blue/10 to-blue/5 rounded-full flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-linear-to-br from-red-500/10 to-red-500/5 rounded-full flex items-center justify-center shrink-0">
                   {(() => {
                     const Icon = sections[currentStep].icon;
-                    return <Icon className="w-5 h-5 md:w-6 md:h-6 text-blue" />;
+                    return <Icon className="w-5 h-5 md:w-6 md:h-6 text-red-500" />;
                   })()}
                 </div>
                 <h3 className="text-xl md:text-2xl font-helvetica text-gray-800 truncate">
@@ -731,7 +731,7 @@ export default function DetailedForm() {
             </div>
             <div className="w-48 bg-gray-200 rounded-full h-2">
               <div
-                className="bg-blue h-2 rounded-full transition-all duration-300"
+                className="bg-red-500 h-2 rounded-full transition-all duration-300"
                 style={{ width: `${((currentStep + 1) / sections.length) * 100}%` }}
               />
             </div>
@@ -760,7 +760,7 @@ export default function DetailedForm() {
                 className={`flex-1 md:flex-none inline-flex items-center justify-center gap-2 px-5 md:px-8 py-3 rounded-full transition-all text-base md:text-lg font-medium ${
                   !canGoNext
                     ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                    : "bg-blue text-white hover:bg-blue/90 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                    : "bg-red-400 text-red-900 hover:bg-red-500 hover:text-white shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                 }`}
               >
                 Suivant
@@ -774,7 +774,7 @@ export default function DetailedForm() {
                 className={`flex-1 md:flex-none inline-flex items-center justify-center gap-2 px-5 md:px-8 py-3 rounded-full transition-all text-base md:text-lg font-medium ${
                   !canGoNext
                     ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                    : "bg-blue text-white hover:bg-blue/90 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                    : "bg-red-400 text-red-900 hover:bg-red-500 hover:text-white shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                 }`}
               >
                 Envoyer mon bilan
@@ -787,6 +787,15 @@ export default function DetailedForm() {
         <p className="text-sm text-gray-400 text-center mt-6">
           {!canGoNext && "Remplis les champs obligatoires (*) pour continuer"}
         </p>
+      </div>
+
+      <div className="flex justify-center mt-12 md:mt-16">
+        <a
+          href="#subject"
+          className="w-12 h-12 rounded-full border-2 border-red-400 flex items-center justify-center hover:border-red-500 hover:bg-red-500/5 transition-all"
+        >
+          <ChevronDown className="w-5 h-5 text-red-500 animate-bounce" />
+        </a>
       </div>
     </section>
   );

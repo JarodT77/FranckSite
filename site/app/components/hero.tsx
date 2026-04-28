@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import cigarette from "../images/cigarette.jpg";
+import franck from "../images/franck.png";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { motion } from "motion/react";
 
@@ -13,10 +13,10 @@ export default function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="inline-flex items-center gap-2 bg-blue/10 border border-blue/20 rounded-full px-5 py-2 mb-8"
+        className="inline-flex items-center gap-2 bg-red-400/10 border border-red-400/20 rounded-full px-5 py-2 mb-8"
       >
-        <span className="w-2 h-2 bg-blue rounded-full animate-pulse" />
-        <p className="text-blue text-sm md:text-base font-semibold font-poppins">
+        <span className="w-2 h-2 bg-red-400 rounded-full animate-pulse" />
+        <p className="text-red-600 text-sm md:text-base font-semibold font-poppins">
           Ton addiction s&apos;arrête ici
         </p>
       </motion.div>
@@ -30,15 +30,14 @@ export default function Hero() {
           className="w-full md:w-1/2"
         >
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold font-helvetica leading-tight">
-            Arrête de fumer,
+            Écrase ta cigarette,
             <br />
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-blue"
             >
-              reprends le contrôle
+              pas ta volonté
             </motion.span>
           </h1>
           <motion.p
@@ -47,8 +46,7 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.8 }}
             className="text-lg md:text-xl mt-5 md:mt-6 font-poppins text-gray-600 leading-relaxed"
           >
-            Un accompagnement personnalisé, un coaching adapté à ton profil et
-            une IA qui t&apos;aide à choisir la meilleure méthode pour toi.
+            Un accompagnement personnalisé et un processus simple pour vous accompagner vers une vie sans tabac
           </motion.p>
 
           <motion.div
@@ -59,7 +57,8 @@ export default function Hero() {
           >
             <a
               href="#bilan-form"
-              className="inline-flex items-center justify-center gap-2 bg-blue text-white text-lg font-bold font-poppins py-3.5 px-8 rounded-full hover:bg-blue/90 transition-colors shadow-lg shadow-blue/25"
+              className="inline-flex items-center justify-center gap-2 bg-red-400 text-red-900 text-lg font-bold font-poppins py-3.5 px-8 rounded-full hover:bg-red-500
+              hover:text-white transition-colors shadow-lg shadow-blue/25"
             >
               Commencer maintenant
               <ArrowRight className="w-5 h-5" />
@@ -71,7 +70,7 @@ export default function Hero() {
             {[
               { value: "80%", label: "de réussite" },
               { value: "+2 ans", label: "d\u2019espérance de vie gagnée" },
-              { value: "3 600€", label: "économisés par an" },
+              { value: "+3 600€", label: "économisés par an" },
             ].map((stat, index) => (
               <motion.div
                 key={stat.value}
@@ -79,7 +78,7 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 1.2 + index * 0.15 }}
               >
-                <p className="text-2xl md:text-4xl font-bold font-poppins text-blue">
+                <p className="text-2xl md:text-4xl font-bold font-poppins text-red-400">
                   {stat.value}
                 </p>
                 <span className="text-sm md:text-base text-gray-500 font-poppins">
@@ -95,13 +94,12 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="w-full md:w-1/2 h-64 md:h-125 relative overflow-hidden rounded-2xl shadow-2xl"
+          className="w-full md:w-1/2 relative rounded-2xl shadow-2xl overflow-hidden"
         >
           <Image
-            src={cigarette}
+            src={franck}
             alt="Arrêter de fumer"
-            fill
-            className="object-cover object-bottom"
+            className="w-full h-auto object-contain"
             priority
           />
           <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent" />
@@ -116,10 +114,10 @@ export default function Hero() {
         className="flex justify-center mt-12 md:mt-16"
       >
         <a
-          href="#subject"
-          className="w-12 h-12 rounded-full border-2 border-blue/30 flex items-center justify-center hover:border-blue hover:bg-blue/5 transition-all"
+          href="#bilan-form"
+          className="w-12 h-12 rounded-full border-2 border-red-400 flex items-center justify-center hover:border-red-500 hover:bg-red-500/5 transition-all"
         >
-          <ChevronDown className="w-5 h-5 text-blue animate-bounce" />
+          <ChevronDown className="w-5 h-5 text-red-500 animate-bounce" />
         </a>
       </motion.div>
     </div>

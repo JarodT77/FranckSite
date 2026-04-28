@@ -7,7 +7,6 @@ const links = [
   { label: "Accueil", href: "#accueil" },
   { label: "Services", href: "#services" },
   { label: "Témoignages", href: "#temoignages" },
-  { label: "Contact", href: "#bilan-form" },
 ];
 
 export default function Navbar() {
@@ -16,8 +15,8 @@ export default function Navbar() {
   return (
     <div className="px-4 md:px-40 pt-4 md:pt-8">
       <nav className="bg-white/80 backdrop-blur-md border border-gray-200 py-3 px-6 md:px-8 flex items-center rounded-full shadow-sm">
-        <a href="#" className="text-blue text-xl md:text-2xl font-bold font-helvetica">
-          MyBrand
+        <a href="#" className="text-red-500 text-xl md:text-2xl font-bold font-helvetica">
+          TueLaClope
         </a>
 
         {/* Desktop */}
@@ -35,9 +34,9 @@ export default function Navbar() {
           <li>
             <a
               href="#bilan-form"
-              className="bg-blue text-white font-bold font-poppins text-sm py-2.5 px-6 rounded-full hover:bg-blue/90 transition-colors"
+              className="bg-red-400 text-red-900 font-bold font-poppins text-sm py-2.5 px-6 rounded-full hover:bg-red-500 hover:text-white transition-colors"
             >
-              Commencer
+              Formulaire
             </a>
           </li>
         </ul>
@@ -71,9 +70,9 @@ export default function Navbar() {
               <a
                 href="#bilan-form"
                 onClick={() => setIsOpen(false)}
-                className="block text-center bg-blue text-white font-bold font-poppins py-3 rounded-full hover:bg-blue/90 transition-colors"
+                className="block text-center bg-red-400 text-red-900 font-bold font-poppins py-3 rounded-full hover:bg-red-500 hover:text-white transition-colors"
               >
-                Commencer
+                Formulaire
               </a>
             </li>
           </ul>

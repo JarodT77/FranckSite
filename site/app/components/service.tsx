@@ -1,4 +1,4 @@
-import { BookOpen, Users, FileText, Check } from "lucide-react";
+import { BookOpen, Users, FileText, Check, ChevronDown } from "lucide-react";
 
 const services = [
   {
@@ -53,9 +53,9 @@ export default function Service() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-bold font-helvetica mb-4">
-            Choisis le niveau d&apos;accompagnement
+            Passe à l&apos;accompagnement 
             <br />
-            <span className="text-blue">dont tu as besoin</span>
+            <span>dont tu as besoin pour arrêter pour de bon.</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto font-poppins">
             Que tu veuilles être guidé de A à Z ou avancer seul, il existe une
@@ -71,23 +71,23 @@ export default function Service() {
                 key={index}
                 className={`relative flex flex-col rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
                   service.highlighted
-                    ? "bg-linear-to-br from-blue-950 via-blue-900 to-blue-800 text-white shadow-lg scale-[1.02] md:scale-105 border border-white/10"
-                    : "bg-white border border-gray-200 shadow-sm hover:border-blue/30"
+                    ? "bg-linear-to-br from-black via-red-800 to-red-900 text-white shadow-lg scale-[1.02] md:scale-105 border border-white/10"
+                    : "bg-white border border-gray-200 shadow-sm hover:border-red-500/30 hover:bg-red-50/50"
                 }`}
               >
                 {service.badge && (
-                  <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-blue text-white text-sm font-semibold font-poppins px-4 py-1 rounded-full whitespace-nowrap">
+                  <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-red-400 text-white text-sm font-semibold font-poppins px-4 py-1 rounded-full whitespace-nowrap">
                     {service.badge}
                   </span>
                 )}
 
                 <div
                   className={`w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4 ${
-                    service.highlighted ? "bg-white/15" : "bg-blue/10"
+                    service.highlighted ? "bg-black/10" : "bg-red-500/10"
                   }`}
                 >
                   <Icon
-                    className={`w-7 h-7 ${service.highlighted ? "text-white" : "text-blue"}`}
+                    className={`w-7 h-7 ${service.highlighted ? "text-white" : "text-red-500"}`}
                   />
                 </div>
 
@@ -113,11 +113,11 @@ export default function Service() {
                       <li key={i} className="flex items-start gap-3">
                         <div
                           className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
-                            service.highlighted ? "bg-white/20" : "bg-blue/10"
+                            service.highlighted ? "bg-white/20" : "bg-red-500/10"
                           }`}
                         >
                           <Check
-                            className={`w-3 h-3 ${service.highlighted ? "text-white" : "text-blue"}`}
+                            className={`w-3 h-3 ${service.highlighted ? "text-white" : "text-red-500"}`}
                           />
                         </div>
                         <span
@@ -135,8 +135,8 @@ export default function Service() {
                 <button
                   className={`w-full font-bold font-poppins text-lg py-3.5 rounded-full transition-colors ${
                     service.highlighted
-                      ? "bg-white text-blue hover:bg-blue-50"
-                      : "bg-blue text-white hover:bg-blue/90"
+                      ? "bg-red-700 text-white hover:bg-red-400"
+                      : "bg-red-400 text-red-900 hover:bg-red-500 hover:text-white"
                   }`}
                 >
                   {service.cta}
@@ -145,6 +145,15 @@ export default function Service() {
             );
           })}
         </div>
+      </div>
+
+      <div className="flex justify-center mt-12 md:mt-16">
+        <a
+          href="#temoignages"
+          className="w-12 h-12 rounded-full border-2 border-red-400 flex items-center justify-center hover:border-red-500 hover:bg-red-500/5 transition-all"
+        >
+          <ChevronDown className="w-5 h-5 text-red-500 animate-bounce" />
+        </a>
       </div>
     </section>
   );
