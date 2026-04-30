@@ -28,7 +28,7 @@ export default function Subject() {
     return (
         <section id="subject" className="mx-4 md:mx-40 mt-12 md:mt-24">
             <h2 className="text-2xl md:text-4xl font-bold font-helvetica text-center">
-                T&apos;arrives pas arreter ?<br/><span className="text-black"> mais les conséquences sont déja là</span>
+                Tu n'arrives pas arreter ?<br/><span className="text-black"> mais les conséquences sont déja là</span>
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-8 md:mt-12">
                 {problems.map((problem, index) => {
@@ -51,6 +51,12 @@ export default function Subject() {
                   );
                 })}
             </div>
+            <div className="hidden md:flex flex-col items-center gap-6 mt-12">
+                            <h2 className="text-2xl md:text-4xl font-bold font-helvetica text-center">DÉCIDE, AGIS, LIBÈRE TOI</h2>
+                            <a href="#bilan-form" className="px-8 text-center bg-red-400 text-red-900 font-bold font-poppins text-lg py-4 rounded-full hover:bg-red-500 hover:text-white transition-colors">
+                                Je veux arrêter de fumer
+                            </a>
+                        </div>
             <div className="flex flex-col justify-center mt-10">
                 <motion.h2
                     initial={{ opacity: 0, y: 30 }}
@@ -59,7 +65,7 @@ export default function Subject() {
                     transition={{ duration: 0.6 }}
                     className="text-2xl md:text-4xl font-bold font-helvetica text-center mt-12 md:mt-24"
                 >
-                    Tu te reconnais dans ces problèmes ?<br/><span className="text-black"> Arrêter de fumer ne devrait pas être une lutte permanente</span>
+                    Tu te reconnais dans ces problèmes ?
                 </motion.h2>
                 <div className="flex flex-col md:flex-row gap-8 mt-8 md:mt-12">
                     {/* Colonne gauche — Ma méthode */}
@@ -92,59 +98,9 @@ export default function Subject() {
                                 ))}
                             </div>
                         </div>
-                        <div className="hidden md:flex flex-col items-center gap-6 mt-12">
-                            <h2 className="text-2xl md:text-4xl font-bold font-helvetica text-center">DÉCIDE, AGIS, LIBÈRE TOI</h2>
-                            <a href="#contact" className="w-1/2 text-center bg-red-400 text-red-900 font-bold font-poppins text-lg py-4 rounded-full hover:bg-red-500 hover:text-white transition-colors">
-                                Je veux arrêter de fumer
-                            </a>
-                        </div>
+                        
                     </motion.div>
 
-                    {/* Colonne droite — On traite la cause */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 40 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6, delay: 0.4 }}
-                        className="flex-1 flex flex-col gap-6"
-                    >
-                        <h2 className="text-2xl md:text-3xl font-bold font-helvetica text-center md:text-left">
-                            On traite la <span className="text-red-500">cause</span>, pas seulement les symptômes
-                        </h2>
-
-                        <div className="flex-1 bg-linear-to-br from-black to-gray-600 rounded-2xl p-6 md:p-8 border border-gray-200">
-                            <h3 className="text-xl font-bold font-poppins mb-5 text-white">On travaille ensemble pour :</h3>
-                            <div className="space-y-4">
-                                {[
-                                    { icon: "🎯", text: "Identifier tes déclencheurs", desc: "Comprendre ce qui te pousse à fumer" },
-                                    { icon: "🔄", text: "Transformer tes routines", desc: "Remplacer les mauvaises habitudes" },
-                                    { icon: "🛠️", text: "Mettre en place des substituts", desc: "Efficaces et adaptés à toi" },
-                                    { icon: "📊", text: "Ajuster en temps réel", desc: "Selon tes progrès et difficultés" },
-                                ].map((item, index) => (
-                                    <div key={index} className="flex gap-4 items-center bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 shadow-sm">
-                                      <span className="text-2xl shrink-0">{item.icon}</span>
-                                      <div>
-                                        <p className="font-semibold text-white">{item.text}</p>
-                                        <p className="text-gray-500 text-sm">{item.desc}</p>
-                                      </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div className="bg-white border border-red-500/20 rounded-2xl p-6 md:p-8">
-                            <p className="text-red-500 font-semibold text-lg mb-3">Pourquoi ça marche ?</p>
-                            <p className="text-gray-800 text-lg leading-relaxed">
-                              Parce qu&apos;on ne se contente pas de <span className="text-red-500 font-bold">supprimer</span> la cigarette.
-                            </p>
-                            <p className="text-gray-600 text-lg leading-relaxed mt-2">
-                              On <span className="text-red-500 font-semibold">reconstruit </span>ton rapport au stress, à l&apos;ennui, aux émotions.
-                            </p>
-                            <p className="text-gray-500 mt-2">
-                              C&apos;est un changement profond. Pas un patch temporaire.
-                            </p>
-                        </div>
-                    </motion.div>
                 </div>
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -162,7 +118,7 @@ export default function Subject() {
 
             <div className="flex justify-center mt-12 md:mt-16">
               <a
-                href="#bienfaits"
+                href="#bilan-form"
                 className="w-12 h-12 rounded-full border-2 border-red-400 flex items-center justify-center hover:border-red-500 hover:bg-red-500/5 transition-all"
               >
                 <ChevronDown className="w-5 h-5 text-red-500 animate-bounce" />

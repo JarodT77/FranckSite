@@ -1,6 +1,7 @@
 import Navbar  from "./components/navbar";
 import Hero from "./components/hero";
 import Subject from "./components/subject";
+import Resolution from "./components/resolution";
 import Benefits from "./components/benefits";
 import Service from "./components/service";
 import Testimonials from "./components/testimonials";
@@ -17,8 +18,9 @@ export default function Home() {
         <Hero />
       </header>
       <main>
-        <DetailedForm />
         <Subject />
+        <Resolution />
+        <DetailedForm />
         <Benefits />
         <Service />
         <Testimonials /> 
