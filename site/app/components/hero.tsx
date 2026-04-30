@@ -21,7 +21,7 @@ export default function Hero() {
         </p>
       </motion.div>
 
-      <div className="flex flex-col-reverse md:flex-row items-center gap-10 md:gap-16">
+      <div className="flex flex-col-reverse md:flex-row items-center gap-6 md:gap-10">
         {/* Texte */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -29,7 +29,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="w-full md:w-1/2"
         >
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold font-helvetica leading-tight">
+          <h1 className="text-3xl md:text-7xl font-bold font-helvetica leading-tight">
             Écrase ta cigarette,
             <br />
             <motion.span
@@ -66,7 +66,7 @@ export default function Hero() {
           </motion.div>
 
           {/* Stats */}
-          <div className="flex gap-6 md:gap-12 mt-10 md:mt-14">
+          <div className="flex gap-6 md:gap-12 mt-6 md:mt-8">
             {[
               { value: "80%", label: "de réussite" },
               { value: "+2 ans", label: "d\u2019espérance de vie gagnée" },
@@ -94,7 +94,7 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="w-full md:w-1/2 relative rounded-2xl shadow-2xl overflow-hidden"
+          className="w-full md:w-2/5 relative rounded-2xl shadow-2xl overflow-hidden"
         >
           <Image
             src={franck}
@@ -111,7 +111,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 1.5 }}
-        className="flex justify-center mt-12 md:mt-16"
+        className="flex justify-center mt-6 md:mt-8"
       >
         <a
           href="#subject"
