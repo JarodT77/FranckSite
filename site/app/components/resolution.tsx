@@ -1,10 +1,11 @@
 "use client";
 
 import { motion } from "motion/react";
+import { ChevronDown } from "lucide-react";
 
 export default function Resolution() {
     return (
-        <section className="mx-4 md:mx-40 mt-12 md:mt-24">
+        <section className="mx-4 md:mx-40 py-12 md:py-16">
             <motion.h2
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -60,6 +61,14 @@ export default function Resolution() {
                         C&apos;est un changement profond. Pas un patch temporaire.
                     </p>
                 </motion.div>
+            </div>
+            <div className="flex justify-center mt-12 md:mt-16">
+                <a
+                    href="#bilan-form"
+                    className="w-12 h-12 rounded-full border-2 border-red-400 flex items-center justify-center hover:border-red-500 hover:bg-red-500/5 transition-all"
+                >
+                    <ChevronDown className="w-5 h-5 text-red-500 animate-bounce" />
+                </a>
             </div>
         </section>
     );

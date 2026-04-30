@@ -1,4 +1,4 @@
-import Navbar  from "./components/navbar";
+import Navbar from "./components/navbar";
 import Hero from "./components/hero";
 import Subject from "./components/subject";
 import Resolution from "./components/resolution";
@@ -9,25 +9,35 @@ import DetailedForm from "./components/detailedForm";
 import CTA from "./components/cta";
 import Footer from "./components/footer";
 
-
 export default function Home() {
   return (
-    <div className="bg-white-alt min-h-screen">
-      <header>
-        <Navbar />
+    <div className="bg-white-alt">
+      <Navbar />
+      <div id="accueil" className="snap-start min-h-screen flex flex-col justify-center pt-20 md:pt-24">
         <Hero />
-      </header>
-      <main>
+      </div>
+      <div id="subject" className="snap-start min-h-screen flex flex-col justify-center">
         <Subject />
+      </div>
+      <div id="resolution" className="snap-start min-h-screen flex flex-col justify-center">
         <Resolution />
+      </div>
+      <div id="bilan-form" className="snap-start min-h-screen flex flex-col justify-center">
         <DetailedForm />
+      </div>
+      <div id="bienfaits" className="snap-start min-h-screen flex flex-col justify-center">
         <Benefits />
+      </div>
+      <div id="services" className="snap-start min-h-screen flex flex-col justify-center">
         <Service />
-        <Testimonials /> 
+      </div>
+      <div id="temoignages" className="snap-start min-h-screen flex flex-col justify-center">
+        <Testimonials />
+      </div>
+      <div id="cta" className="snap-start min-h-screen flex flex-col justify-center">
         <CTA />
-      </main>
+      </div>
       <Footer />
     </div>
-    
   );
 }

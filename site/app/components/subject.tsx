@@ -26,9 +26,9 @@ const problems = [
 
 export default function Subject() {
     return (
-        <section id="subject" className="mx-4 md:mx-40 mt-12 md:mt-24">
+        <section className="mx-4 md:mx-40 py-12 md:py-16">
             <h2 className="text-2xl md:text-4xl font-bold font-helvetica text-center">
-                Tu n'arrives pas arreter ?<br/><span className="text-black"> mais les conséquences sont déja là</span>
+                Tu n&apos;arrives pas arreter ?<br/><span className="text-black"> mais les conséquences sont déja là</span>
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-8 md:mt-12">
                 {problems.map((problem, index) => {
@@ -110,7 +110,7 @@ export default function Subject() {
                     className="flex md:hidden flex-col items-center gap-6 mt-12"
                 >
                     <h2 className="text-2xl font-bold font-helvetica text-center"> DÉCIDE, AGIS, LIBÈRE TOI</h2>
-                    <a href="#contact" className="w-3/4 text-center bg-red-400 text-red-900 font-bold font-poppins text-lg py-4 rounded-full hover:bg-red-500 hover:text-white transition-colors">
+                    <a href="#bilan-form" className="w-3/4 text-center bg-red-400 text-red-900 font-bold font-poppins text-lg py-4 rounded-full hover:bg-red-500 hover:text-white transition-colors">
                         Je veux arrêter de fumer
                     </a>
                 </motion.div>
@@ -118,7 +118,7 @@ export default function Subject() {
 
             <div className="flex justify-center mt-12 md:mt-16">
               <a
-                href="#bilan-form"
+                href="#resolution"
                 className="w-12 h-12 rounded-full border-2 border-red-400 flex items-center justify-center hover:border-red-500 hover:bg-red-500/5 transition-all"
               >
                 <ChevronDown className="w-5 h-5 text-red-500 animate-bounce" />

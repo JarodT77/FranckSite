@@ -7,7 +7,7 @@ import { motion } from "motion/react";
 
 export default function Hero() {
   return (
-    <div id="accueil" className="px-4 md:px-40 mt-10 md:mt-20">
+    <div className="px-4 md:px-40">
       {/* Badge */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}

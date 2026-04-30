@@ -2,7 +2,7 @@ import { ArrowRight, CheckCircle } from "lucide-react";
 
 export default function CTA() {
   return (
-    <section id="cta" className="py-20 px-4 md:px-6 bg-linear-to-br from-black to-gray-600">
+    <section className="py-20 px-4 md:px-6 bg-linear-to-br from-black to-gray-600">
       <div className="max-w-4xl mx-auto text-center text-white">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-helvetica mb-6">
           Prêt à commencer ta nouvelle vie ?
