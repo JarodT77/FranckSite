@@ -140,7 +140,7 @@ export default function Chatbot() {
               onKeyDown={handleKeyDown}
               placeholder="Écris ton message..."
               disabled={isLoading}
-              className="flex-1 bg-gray-50 border border-gray-200 rounded-full px-4 py-2 text-sm font-poppins text-gray-800 placeholder-gray-400 outline-none focus:border-red-300 focus:ring-2 focus:ring-red-100 transition-all disabled:opacity-60"
+              className="flex-1 bg-gray-50 border border-gray-200 rounded-full px-4 py-2 text-base sm:text-sm font-poppins text-gray-800 placeholder-gray-400 outline-none focus:border-red-300 focus:ring-2 focus:ring-red-100 transition-all disabled:opacity-60"
             />
             <button
               onClick={sendMessage}
