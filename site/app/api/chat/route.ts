@@ -1,8 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { NextRequest, NextResponse } from "next/server";
 
-const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-
 const SYSTEM_PROMPT = `Tu es **Clope-Free**, l'assistant virtuel du site **TueLaClope**, un service d'accompagnement à l'arrêt du tabac. Ton rôle est d'accueillir chaleureusement les visiteurs, comprendre leur situation personnelle face au tabac, et les orienter vers l'offre la plus adaptée parmi les trois formules proposées.
 
 ## Ton identité
@@ -89,6 +87,12 @@ Rappelle les éléments rassurants : **sans engagement, essai gratuit 14 jours, 
 
 export async function POST(req: NextRequest) {
   try {
+    const apiKey = process.env.ANTHROPIC_API_KEY;
+    if (!apiKey) {
+      return NextResponse.json({ error: "Clé API manquante" }, { status: 500 });
+    }
+
+    const client = new Anthropic({ apiKey });
     const { messages } = await req.json();
 
     const response = await client.messages.create({
