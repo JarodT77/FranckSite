@@ -16,7 +16,7 @@ export default function Navbar() {
     <div className="fixed top-0 left-0 right-0 z-50 px-4 md:px-40 pt-4 md:pt-8 bg-white-alt">
       <nav className="bg-white/80 backdrop-blur-md border border-gray-200 py-3 px-6 md:px-8 flex items-center rounded-full shadow-sm">
         <a href="#" className="text-red-500 text-xl md:text-2xl font-bold font-helvetica">
-          TueLaClope
+          SOUFFLE LIBRE
         </a>
 
         {/* Desktop */}

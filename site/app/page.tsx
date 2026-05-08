@@ -8,6 +8,7 @@ import Testimonials from "./components/testimonials";
 import DetailedForm from "./components/detailedForm";
 import CTA from "./components/cta";
 import Footer from "./components/footer";
+import Chatbot from "./components/chatbot";
 
 export default function Home() {
   return (
@@ -38,6 +39,7 @@ export default function Home() {
         <CTA />
       </div>
       <Footer />
+      <Chatbot />
     </div>
   );
 }
