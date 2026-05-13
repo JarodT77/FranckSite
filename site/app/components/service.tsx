@@ -1,4 +1,5 @@
 import { BookOpen, Users, FileText, Check, ChevronDown } from "lucide-react";
+import Link from "next/link";
 
 const services = [
   {
@@ -132,15 +133,24 @@ export default function Service() {
                   </ul>
                 </div>
 
-                <button
-                  className={`w-full font-bold font-poppins text-lg py-3.5 rounded-full transition-colors ${
-                    service.highlighted
-                      ? "bg-red-700 text-white hover:bg-red-400"
-                      : "bg-red-400 text-red-900 hover:bg-red-500 hover:text-white"
-                  }`}
-                >
-                  {service.cta}
-                </button>
+                {service.title === "Documentation" ? (
+                  <Link
+                    href="/documentation"
+                    className={`block w-full text-center font-bold font-poppins text-lg py-3.5 rounded-full transition-colors bg-red-400 text-red-900 hover:bg-red-500 hover:text-white`}
+                  >
+                    {service.cta}
+                  </Link>
+                ) : (
+                  <button
+                    className={`w-full font-bold font-poppins text-lg py-3.5 rounded-full transition-colors ${
+                      service.highlighted
+                        ? "bg-red-700 text-white hover:bg-red-400"
+                        : "bg-red-400 text-red-900 hover:bg-red-500 hover:text-white"
+                    }`}
+                  >
+                    {service.cta}
+                  </button>
+                )}
               </div>
             );
           })}
