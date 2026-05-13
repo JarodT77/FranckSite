@@ -5,25 +5,25 @@ const benefits = [
     icon: HeartPulse,
     title: "Santé améliorée",
     description: "Après 20 minutes, votre tension artérielle diminue. Après 12 heures, le taux de monoxyde de carbone revient à la normale.",
-    stats: "Risque cardiaque réduit de 50% après 1 an"
+    stats: "-50% Risque cardiaque"
   },
   {
     icon: Wallet,
     title: "Économies considérables",
-    description: "Un fumeur moyen dépense environ 3 000€ par an en cigarettes. Imaginez ce que vous pourriez faire avec cet argent !",
+    description: "1 paquet/jour à 11€ : 4 015€ la première année. En 10 ans : plus de 40 000€. De l'argent réel que tu ne brûles plus littéralement.",
     stats: "Jusqu'à 3 000€ économisés par an"
   },
   {
     icon: Clock,
     title: "Plus de temps libre",
-    description: "Fini les pauses cigarettes, les détours pour acheter des paquets. Récupérez du temps précieux pour ce qui compte vraiment.",
-    stats: "2h par jour récupérées en moyenne"
+    description: "Fini les pauses forcées, les détours pour acheter, les sorties dans le froid. Du temps retrouvé pour ce qui en vaut la peine.",
+    stats: "+2h par jour récupérées en moyenne"
   },
   {
     icon: Smile,
     title: "Bien-être quotidien",
-    description: "Retrouvez le goût et l'odorat, respirez librement, dormez mieux et profitez d'une peau plus saine et éclatante.",
-    stats: "Énergie augmentée de 40%"
+    description: "Goût, odorat, souffle, sommeil, peau — tout se régénère. À 15 ans d'arrêt, ton cœur a les mêmes statistiques qu'un non-fumeur.",
+    stats: "+40% D'énergie augmentée "
   }
 ];
 
@@ -36,7 +36,7 @@ export default function Benefits() {
             Les bienfaits de l&apos;arrêt du tabac
           </h2>
           <p className="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto font-poppins">
-            Votre corps commence à se régénérer dès les premières heures
+            Ton corps commence à réparer dès que tu arrêtes. Voici ce que les données disent — sans enjoliver.
           </p>
         </div>
 

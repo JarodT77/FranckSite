@@ -4,9 +4,9 @@ import Link from "next/link";
 const services = [
   {
     icon: BookOpen,
-    title: "Accompagnement",
+    title: "PROGRAMME",
     description:
-      "Une méthode structurée pour t'aider à arrêter de fumer à ton rythme avec un cadre clair et des étapes précises.",
+      "Une méthode structurée étape par étape, à ton rythme.",
     features: [
       "Un programme complet étape par étape",
       "Des actions concrètes à appliquer",
@@ -19,7 +19,7 @@ const services = [
   },
   {
     icon: Users,
-    title: "Coaching",
+    title: "COACHING",
     description:
       "Un accompagnement 100% sur mesure avec un coach dédié pour t'aider à arrêter efficacement et durablement.",
     features: [
@@ -34,9 +34,9 @@ const services = [
   },
   {
     icon: FileText,
-    title: "Documentation",
+    title: "DOCUMENTATION",
     description:
-      "Accède à des contenus pratiques pour comprendre ton addiction et commencer à arrêter par toi-même.",
+      "Accède aux ressources pour comprendre ton addiction et avancer seul.",
     features: [
       "Guides et méthodes simples",
       "Techniques anti-envie",
@@ -54,13 +54,11 @@ export default function Service() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-bold font-helvetica mb-4">
-            Passe à l&apos;accompagnement 
-            <br />
-            <span>dont tu as besoin pour arrêter pour de bon.</span>
+            Choisis ton
+            <span> niveau d'engagement</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto font-poppins">
-            Que tu veuilles être guidé de A à Z ou avancer seul, il existe une
-            solution adaptée à ta situation.
+            Quel que soit ton point de départ, il existe une formule adaptée à ta situation.
           </p>
         </div>
 

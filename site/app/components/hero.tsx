@@ -46,7 +46,7 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.8 }}
             className="text-lg md:text-xl mt-5 md:mt-6 font-poppins text-gray-600 leading-relaxed"
           >
-            Un accompagnement personnalisé et un processus simple pour vous accompagner vers une vie sans tabac
+            Pas de méthode miracle. Pas de promesse vide. Un accompagnement qui s'attaque à la vraie cause — pas juste aux symptômes.
           </motion.p>
 
           <motion.div

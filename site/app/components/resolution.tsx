@@ -15,6 +15,8 @@ export default function Resolution() {
             >
                 On traite la <span className="text-red-500">cause</span>, pas seulement les symptômes
             </motion.h2>
+            <p className="text-gray-500 font-poppins text-center text-lg mt-4 mb-12">La cigarette n'est pas le problème — elle est la réponse à un problème. On va trouver lequel.</p>  
+
 
             <div className="flex flex-col md:flex-row gap-8 mt-10 md:mt-14">
                 <motion.div
@@ -27,10 +29,10 @@ export default function Resolution() {
                     <h3 className="text-xl font-bold font-poppins mb-5 text-white">On travaille ensemble pour :</h3>
                     <div className="space-y-4">
                         {[
-                            { icon: "🎯", text: "Identifier tes déclencheurs", desc: "Comprendre ce qui te pousse à fumer" },
-                            { icon: "🔄", text: "Transformer tes routines", desc: "Remplacer les mauvaises habitudes" },
-                            { icon: "🛠️", text: "Mettre en place des substituts", desc: "Efficaces et adaptés à toi" },
-                            { icon: "📊", text: "Ajuster en temps réel", desc: "Selon tes progrès et difficultés" },
+                            { icon: "🎯", text: "Identifier tes déclencheurs", desc: "Café du matin, stress au travail, alcool le soir — on cartographie exactement ce qui te pousse à allumer une cigarette." },
+                            { icon: "🔄", text: "Transformer tes routines", desc: "Chaque automatisme tabagique est remplacé par un comportement alternatif concret. Le cerveau ne tolère pas le vide — on le remplit." },
+                            { icon: "🛠️", text: "Mettre en place des substituts", desc: "Patch, gommes, spray, varénicline — le bon outil au bon moment. Ça double les chances de succès. Les études le confirment." },
+                            { icon: "📊", text: "Ajuster en temps réel", desc: "On mesure, on analyse, on ajuste. Pas de dogme — ce qui marche pour toi, on le garde. Ce qui ne marche pas, on le change." },
                         ].map((item, index) => (
                             <div key={index} className="flex gap-4 items-center bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 shadow-sm">
                                 <span className="text-2xl shrink-0">{item.icon}</span>

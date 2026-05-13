@@ -8,19 +8,19 @@ const problems = [
     icon: Brain,
     title: "Problèmes psychologiques",
     description:
-      "L\u2019addiction au tabac ne vient pas seulement de la nicotine. Elle est souvent li\u00e9e au stress, \u00e0 l\u2019anxi\u00e9t\u00e9 ou \u00e0 la d\u00e9pression. Si tu n\u2019arrives pas \u00e0 arr\u00eater, ce n\u2019est pas un manque de volont\u00e9 : ton cerveau utilise la cigarette comme une \u00e9chappatoire. En comprenant ces d\u00e9clencheurs \u00e9motionnels, tu peux enfin arr\u00eater durablement.",
+      "Ton cerveau a associé la cigarette au soulagement du stress. Mais ce stress — c'est elle qui le crée entre deux cigarettes. C'est un cercle fermé. On l'ouvre ensemble.",
   },
   {
     icon: HeartPulse,
     title: "Problèmes physiques",
     description:
-      "L\u2019addiction au tabac a aussi des cons\u00e9quences physiques graves : maladies cardiaques, troubles respiratoires, fatigue chronique. Tu te retrouves dans un cercle vicieux o\u00f9 fumer aggrave ta sant\u00e9 tout en rendant l\u2019arr\u00eat encore plus difficile. Comprendre cet impact est essentiel pour reprendre le contr\u00f4le.",
+      "La nicotine reconfigure tes récepteurs dopaminergiques en 10 secondes. Ton corps a appris à en dépendre. Ce n'est pas de la faiblesse — c'est de la biologie. Et ça se traite.",
   },
   {
     icon: ShieldAlert,
     title: "Problèmes liés aux tentatives d\u2019arrêt",
     description:
-      "Tenter d\u2019arr\u00eater peut provoquer des sympt\u00f4mes de sevrage comme des naus\u00e9es, des tremblements ou des sueurs. Ces r\u00e9actions sont normales : ton corps se lib\u00e8re de la nicotine. En comprenant ces sympt\u00f4mes et en les anticipant, tu peux mieux les g\u00e9rer et r\u00e9ussir \u00e0 arr\u00eater durablement.",
+      "Tu as déjà essayé. Ça n'a pas tenu. Parce que couper la cigarette sans comprendre ce qui la déclenche, c'est mettre un pansement sur une fracture. On traite la cause.",
   },
 ];
 
@@ -30,6 +30,8 @@ export default function Subject() {
             <h2 className="text-2xl md:text-4xl font-bold font-helvetica text-center">
                 Tu n&apos;arrives pas arreter ?<br/><span className="text-black"> mais les conséquences sont déja là</span>
             </h2>
+            <p className="text-gray-500 font-poppins text-center text-lg mt-4 mb-12">Pas parce que tu es faible. Parce que personne ne t'a expliqué ce qui se passe vraiment dans ton cerveau.
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-8 md:mt-12">
                 {problems.map((problem, index) => {
                   const Icon = problem.icon;
@@ -54,7 +56,7 @@ export default function Subject() {
             <div className="hidden md:flex flex-col items-center gap-6 mt-12">
                             <h2 className="text-2xl md:text-4xl font-bold font-helvetica text-center">DÉCIDE, AGIS, LIBÈRE TOI</h2>
                             <a href="#bilan-form" className="px-8 text-center bg-red-400 text-red-900 font-bold font-poppins text-lg py-4 rounded-full hover:bg-red-500 hover:text-white transition-colors">
-                                Je veux arrêter de fumer
+                                Reprendrte le contrôle
                             </a>
                         </div>
             <div className="flex flex-col justify-center mt-10">
@@ -83,10 +85,10 @@ export default function Subject() {
                             <p className="font-poppins text-gray-300 mt-4 mb-8 text-lg">Ma méthode repose sur 4 piliers :</p>
                             <div className="grid grid-cols-2 gap-5">
                                 {[
-                                  { number: "1", title: "Diagnostic précis", desc: "On identifie exactement où tu en es" },
-                                  { number: "2", title: "Objectifs clairs", desc: "Des étapes mesurables et réalistes" },
-                                  { number: "3", title: "Outils éprouvés", desc: "Des techniques qui ont fait leurs preuves" },
-                                  { number: "4", title: "Autonomie", desc: "Tu deviens acteur de ton changement" },
+                                  { number: "1", title: "Diagnostic précis", desc: "On identifie exactement où tu en es : niveau de dépendance, déclencheurs, historique. Pas de généralités — ton profil, tes données." },
+                                  { number: "2", title: "Objectifs clairs", desc: "Des étapes mesurables, une date d'arrêt fixée, des jalons hebdomadaires. Ce qui est mesuré est géré. Ce qui est vague est abandonné." },
+                                  { number: "3", title: "Outils éprouvés", desc: "TSN, TCC, techniques de gestion du craving — seulement ce que les études cliniques confirment. Pas de charlatanisme." },
+                                  { number: "4", title: "Autonomie", desc: "L'objectif : que tu n'aies plus besoin de moi. Tu comprends tes mécanismes, tu gères tes envies. Tu es libre pour de bon." },
                                 ].map((pillar) => (
                                   <div key={pillar.number} className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10">
                                     <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-gray-700 text-red-500 font-bold text-lg mb-3">
@@ -111,7 +113,7 @@ export default function Subject() {
                 >
                     <h2 className="text-2xl font-bold font-helvetica text-center"> DÉCIDE, AGIS, LIBÈRE TOI</h2>
                     <a href="#bilan-form" className="w-3/4 text-center bg-red-400 text-red-900 font-bold font-poppins text-lg py-4 rounded-full hover:bg-red-500 hover:text-white transition-colors">
-                        Je veux arrêter de fumer
+                       Reprendre le contrôle 
                     </a>
                 </motion.div>
             </div>

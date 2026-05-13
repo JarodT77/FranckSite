@@ -5,10 +5,10 @@ export default function CTA() {
     <section className="py-20 px-4 md:px-6 bg-linear-to-br from-black to-gray-600">
       <div className="max-w-4xl mx-auto text-center text-white">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-helvetica mb-6">
-          Prêt à commencer ta nouvelle vie ?
+          Prêt à reprendre le contrôle ?
         </h2>
         <p className="text-lg md:text-xl mb-8 text-blue-100 font-poppins">
-          Rejoins le programme dès aujourd&apos;hui et bénéficie d&apos;un accompagnement personnalisé
+          Rejoins le programme aujourd'hui. Pas demain. Pas lundi. Aujourd'hui.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
