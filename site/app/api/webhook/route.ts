@@ -4,10 +4,9 @@ import { Resend } from "resend";
 import { readFileSync } from "fs";
 import { join } from "path";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
-const resend = new Resend(process.env.RESEND_API_KEY!);
-
 export async function POST(req: NextRequest) {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+  const resend = new Resend(process.env.RESEND_API_KEY!);
   const body = await req.text();
   const sig = req.headers.get("stripe-signature")!;
 

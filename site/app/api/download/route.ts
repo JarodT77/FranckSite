@@ -3,9 +3,8 @@ import Stripe from "stripe";
 import { readFileSync } from "fs";
 import { join } from "path";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
-
 export async function GET(req: NextRequest) {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
   const sessionId = req.nextUrl.searchParams.get("session_id");
 
   if (!sessionId) {
