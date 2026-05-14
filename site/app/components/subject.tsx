@@ -112,8 +112,8 @@ export default function Subject() {
                     className="flex md:hidden flex-col items-center gap-6 mt-12"
                 >
                     <h2 className="text-2xl font-bold font-helvetica text-center"> DÉCIDE, AGIS, LIBÈRE TOI</h2>
-                    <a href="#bilan-form" className="w-3/4 text-center bg-red-400 text-red-900 font-bold font-poppins text-lg py-4 rounded-full hover:bg-red-500 hover:text-white transition-colors">
-                       Reprendre le contrôle 
+                    <a href="https://wa.me/33638141287" target="_blank" rel="noopener noreferrer" className="w-3/4 text-center bg-red-400 text-red-900 font-bold font-poppins text-lg py-4 rounded-full hover:bg-red-500 hover:text-white active:bg-red-500 active:text-white transition-colors">
+                       Reprendre le contrôle
                     </a>
                 </motion.div>
             </div>

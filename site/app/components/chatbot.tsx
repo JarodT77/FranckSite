@@ -29,6 +29,12 @@ export default function Chatbot() {
     }
   }, [messages, isOpen]);
 
+  useEffect(() => {
+    const handler = () => setIsOpen(true);
+    window.addEventListener("open-chatbot", handler);
+    return () => window.removeEventListener("open-chatbot", handler);
+  }, []);
+
   async function sendMessage() {
     const trimmed = input.trim();
     if (!trimmed || isLoading) return;

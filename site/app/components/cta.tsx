@@ -1,3 +1,5 @@
+"use client";
+
 import { ArrowRight, CheckCircle } from "lucide-react";
 
 export default function CTA() {
@@ -13,13 +15,18 @@ export default function CTA() {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
           <a
-            href="#bilan-form"
-            className="bg-red-400 text-red-900 px-8 py-4 rounded-full hover:bg-red-500 hover:text-white transition-colors flex items-center justify-center gap-2 text-lg font-bold font-poppins shadow-xl"
+            href="https://wa.me/33638141287"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-red-400 text-red-900 px-8 py-4 rounded-full hover:bg-red-500 hover:text-white active:bg-red-500 active:text-white transition-colors flex items-center justify-center gap-2 text-lg font-bold font-poppins shadow-xl"
           >
             Commencer maintenant
             <ArrowRight className="w-5 h-5" />
           </a>
-          <button className="border-2 border-white/30 text-white px-8 py-4 rounded-full hover:bg-white/10 transition-colors text-lg font-medium font-poppins">
+          <button
+            onClick={() => window.dispatchEvent(new Event("open-chatbot"))}
+            className="border-2 border-white/30 text-white px-8 py-4 rounded-full hover:bg-white/10 active:bg-white/10 transition-colors text-lg font-medium font-poppins"
+          >
             Parler à un conseiller
           </button>
         </div>

@@ -38,7 +38,9 @@ export default function Home() {
       <div id="cta" className="snap-start min-h-screen flex flex-col justify-center">
         <CTA />
       </div>
-      <Footer />
+      <div className="snap-start">
+        <Footer />
+      </div>
       <Chatbot />
     </div>
   );

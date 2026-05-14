@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Phone, MessageCircle } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -7,35 +7,30 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           {/* Marque */}
           <div>
-            <h3 className="text-2xl font-bold font-helvetica mb-4">My Navbar</h3>
-            <p className="text-blue-200 font-poppins leading-relaxed">
-              Un accompagnement personnalisé pour t&apos;aider à arrêter de fumer durablement, sans rechute et sans souffrance.
+            <h3 className="text-2xl font-bold font-helvetica text-red-400 mb-4">SOUFFLE LIBRE</h3>
+            <p className="text-gray-400 font-poppins leading-relaxed">
+              Un accompagnement personnalisé pour arrêter de fumer durablement — sans rechute, sans souffrance.
             </p>
           </div>
 
-          {/* Liens rapides */}
+          {/* Navigation */}
           <div>
-            <h4 className="text-lg font-bold font-helvetica mb-4">Liens rapides</h4>
+            <h4 className="text-lg font-bold font-helvetica mb-4">Navigation</h4>
             <ul className="space-y-3 font-poppins">
               <li>
-                <a href="#" className="text-blue-200 hover:text-white transition-colors">
-                  Accueil
-                </a>
+                <a href="#accueil" className="text-gray-400 hover:text-white transition-colors">Accueil</a>
               </li>
               <li>
-                <a href="#" className="text-blue-200 hover:text-white transition-colors">
-                  À propos
-                </a>
+                <a href="#services" className="text-gray-400 hover:text-white transition-colors">Services</a>
               </li>
               <li>
-                <a href="#bilan-form" className="text-blue-200 hover:text-white transition-colors">
-                  Bilan personnel
-                </a>
+                <a href="#temoignages" className="text-gray-400 hover:text-white transition-colors">Témoignages</a>
               </li>
               <li>
-                <a href="#" className="text-blue-200 hover:text-white transition-colors">
-                  Contact
-                </a>
+                <a href="#bilan-form" className="text-gray-400 hover:text-white transition-colors">Formulaire bilan</a>
+              </li>
+              <li>
+                <a href="/documentation" className="text-gray-400 hover:text-white transition-colors">Documentation</a>
               </li>
             </ul>
           </div>
@@ -45,29 +40,37 @@ export default function Footer() {
             <h4 className="text-lg font-bold font-helvetica mb-4">Contact</h4>
             <ul className="space-y-3 font-poppins">
               <li className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-blue-300 shrink-0" />
-                <a href="mailto:contact@example.com" className="text-blue-200 hover:text-white transition-colors">
-                  contact@example.com
+                <Phone className="w-5 h-5 text-red-400 shrink-0" />
+                <a href="tel:+33638141287" className="text-gray-400 hover:text-white transition-colors">
+                  06 38 14 12 87
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-blue-300 shrink-0" />
-                <a href="tel:+33600000000" className="text-blue-200 hover:text-white transition-colors">
-                  06 00 00 00 00
+                <MessageCircle className="w-5 h-5 text-red-400 shrink-0" />
+                <a
+                  href="https://wa.me/33638141287"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  WhatsApp
                 </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <MapPin className="w-5 h-5 text-blue-300 shrink-0" />
-                <span className="text-blue-200">Paris, France</span>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Séparateur + Copyright */}
         <div className="border-t border-white/10 pt-8 text-center">
-          <p className="text-blue-300 text-sm font-poppins">
-            &copy; {new Date().getFullYear()} Tous droits réservés.
+          <p className="text-gray-500 text-sm font-poppins">
+            &copy; {new Date().getFullYear()} Souffle Libre — Tous droits réservés. · Site créé par{" "}
+            <a
+              href="https://www.nozomiweb.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-red-400 hover:text-white transition-colors"
+            >
+              Nozomi
+            </a>
           </p>
         </div>
       </div>

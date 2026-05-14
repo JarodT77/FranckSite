@@ -131,23 +131,26 @@ export default function Service() {
                   </ul>
                 </div>
 
-                {service.title === "Documentation" ? (
+                {service.title === "DOCUMENTATION" ? (
                   <Link
                     href="/documentation"
-                    className={`block w-full text-center font-bold font-poppins text-lg py-3.5 rounded-full transition-colors bg-red-400 text-red-900 hover:bg-red-500 hover:text-white`}
+                    className={`block w-full text-center font-bold font-poppins text-lg py-3.5 rounded-full transition-colors bg-red-400 text-red-900 hover:bg-red-500 hover:text-white active:bg-red-500 active:text-white`}
                   >
                     {service.cta}
                   </Link>
                 ) : (
-                  <button
-                    className={`w-full font-bold font-poppins text-lg py-3.5 rounded-full transition-colors ${
+                  <a
+                    href="https://wa.me/33638141287"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`block w-full text-center font-bold font-poppins text-lg py-3.5 rounded-full transition-colors ${
                       service.highlighted
-                        ? "bg-red-700 text-white hover:bg-red-400"
-                        : "bg-red-400 text-red-900 hover:bg-red-500 hover:text-white"
+                        ? "bg-red-700 text-white hover:bg-red-400 active:bg-red-400"
+                        : "bg-red-400 text-red-900 hover:bg-red-500 hover:text-white active:bg-red-500 active:text-white"
                     }`}
                   >
                     {service.cta}
-                  </button>
+                  </a>
                 )}
               </div>
             );

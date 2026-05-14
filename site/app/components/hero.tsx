@@ -56,9 +56,10 @@ export default function Hero() {
             className="flex flex-col sm:flex-row gap-4 mt-8"
           >
             <a
-              href="#bilan-form"
-              className="inline-flex items-center justify-center gap-2 bg-red-400 text-red-900 text-lg font-bold font-poppins py-3.5 px-8 rounded-full hover:bg-red-500
-              hover:text-white transition-colors shadow-lg shadow-blue/25"
+              href="https://wa.me/33638141287"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 bg-red-400 text-red-900 text-lg font-bold font-poppins py-3.5 px-8 rounded-full hover:bg-red-500 hover:text-white active:bg-red-500 active:text-white transition-colors shadow-lg shadow-blue/25"
             >
               Commencer maintenant
               <ArrowRight className="w-5 h-5" />
