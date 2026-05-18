@@ -56,9 +56,7 @@ export default function Hero() {
             className="flex flex-col sm:flex-row gap-4 mt-8"
           >
             <a
-              href="https://wa.me/33638141287"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/contact"
               className="inline-flex items-center justify-center gap-2 bg-red-400 text-red-900 text-lg font-bold font-poppins py-3.5 px-8 rounded-full hover:bg-red-500 hover:text-white active:bg-red-500 active:text-white transition-colors shadow-lg shadow-blue/25"
             >
               Commencer maintenant
@@ -115,7 +113,7 @@ export default function Hero() {
         className="flex justify-center mt-6 md:mt-8"
       >
         <a
-          href="#subject"
+          href="#profil"
           className="w-12 h-12 rounded-full border-2 border-red-400 flex items-center justify-center hover:border-red-500 hover:bg-red-500/5 transition-all"
         >
           <ChevronDown className="w-5 h-5 text-red-500 animate-bounce" />

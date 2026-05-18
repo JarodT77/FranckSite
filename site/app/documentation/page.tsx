@@ -98,7 +98,7 @@ export default function Documentation() {
               </>
             ) : (
               <>
-                Accéder au guide — 10€
+                Accéder au guide — 59€
                 <ArrowRight className="w-5 h-5" />
               </>
             )}

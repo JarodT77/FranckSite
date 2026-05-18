@@ -4,7 +4,9 @@ import Link from "next/link";
 const services = [
   {
     icon: BookOpen,
-    title: "PROGRAMME",
+    title: "ACCOMPAGNEMENT",
+    price: "À partir de 297€",
+    duration: "6 semaines",
     description:
       "Une méthode structurée étape par étape, à ton rythme.",
     features: [
@@ -14,12 +16,15 @@ const services = [
       "Une progression logique",
       "Un cadre pour éviter les rechutes",
     ],
+    note: "Le tarif final est défini après un appel découverte.",
     cta: "Je veux être accompagné",
     highlighted: false,
   },
   {
     icon: Users,
     title: "COACHING",
+    price: "À partir de 149€",
+    duration: "4 semaines",
     description:
       "Un accompagnement 100% sur mesure avec un coach dédié pour t'aider à arrêter efficacement et durablement.",
     features: [
@@ -28,6 +33,7 @@ const services = [
       "Un accompagnement humain et bienveillant",
       "Des ajustements selon tes progrès",
     ],
+    note: "Le tarif final est défini après un appel découverte.",
     cta: "Démarrer mon coaching",
     highlighted: true,
     badge: "Le plus populaire",
@@ -35,6 +41,8 @@ const services = [
   {
     icon: FileText,
     title: "DOCUMENTATION",
+    price: "59€",
+    duration: "Accès instantané",
     description:
       "Accède aux ressources pour comprendre ton addiction et avancer seul.",
     features: [
@@ -98,6 +106,23 @@ export default function Service() {
                   {service.title}
                 </h3>
 
+                <div className="text-center mb-2">
+                  <span
+                    className={`text-3xl font-bold font-poppins ${
+                      service.highlighted ? "text-white" : "text-red-400"
+                    }`}
+                  >
+                    {service.price}
+                  </span>
+                  <span
+                    className={`block text-sm font-poppins mt-0.5 ${
+                      service.highlighted ? "text-white/60" : "text-gray-400"
+                    }`}
+                  >
+                    {service.duration}
+                  </span>
+                </div>
+
                 <p
                   className={`text-center font-poppins mb-6 leading-relaxed ${
                     service.highlighted ? "text-blue-100" : "text-gray-500"
@@ -131,6 +156,16 @@ export default function Service() {
                   </ul>
                 </div>
 
+                {"note" in service && service.note && (
+                  <p
+                    className={`text-xs text-center font-poppins mb-4 italic ${
+                      service.highlighted ? "text-white/50" : "text-gray-400"
+                    }`}
+                  >
+                    {service.note}
+                  </p>
+                )}
+
                 {service.title === "DOCUMENTATION" ? (
                   <Link
                     href="/documentation"
@@ -140,9 +175,7 @@ export default function Service() {
                   </Link>
                 ) : (
                   <a
-                    href="https://wa.me/33638141287"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="/contact"
                     className={`block w-full text-center font-bold font-poppins text-lg py-3.5 rounded-full transition-colors ${
                       service.highlighted
                         ? "bg-red-700 text-white hover:bg-red-400 active:bg-red-400"

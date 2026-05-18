@@ -1,5 +1,6 @@
 import Navbar from "./components/navbar";
 import Hero from "./components/hero";
+import Profil from "./components/profil";
 import Subject from "./components/subject";
 import Resolution from "./components/resolution";
 import Benefits from "./components/benefits";
@@ -16,6 +17,9 @@ export default function Home() {
       <Navbar />
       <div id="accueil" className="snap-start min-h-screen flex flex-col justify-center pt-20 md:pt-24">
         <Hero />
+      </div>
+      <div id="profil" className="snap-start min-h-screen flex flex-col justify-center">
+        <Profil />
       </div>
       <div id="subject" className="snap-start min-h-screen flex flex-col justify-center">
         <Subject />
