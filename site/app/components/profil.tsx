@@ -7,7 +7,6 @@ import { motion } from "motion/react";
 
 const points = [
   "Ancien fumeur — je connais ce combat de l'intérieur",
-  "Formé aux Thérapies Cognitives et Comportementales (TCC)",
   "Accompagnement 100% personnalisé — pas de programme générique",
   "Plus de 200 personnes aidées à arrêter durablement",
 ];
@@ -29,7 +28,7 @@ export default function Profil() {
           </p>
         </span>
         <h2 className="text-2xl md:text-4xl font-bold font-helvetica">
-          Qui <span className="text-red-400">je suis</span>
+          Pas une théoricien.<span className="text-red-400">Un practicien.</span>
         </h2>
       </motion.div>
 
@@ -59,13 +58,13 @@ export default function Profil() {
           className="w-full md:w-3/5 flex flex-col gap-6"
         >
           <p className="font-poppins text-gray-600 text-lg leading-relaxed">
-            Je ne suis pas un thérapeute sorti d&apos;un manuel. J&apos;ai moi-même traversé l&apos;addiction au tabac — les tentatives ratées, les rechutes, la honte de recommencer. Ce combat, je l&apos;ai vécu de l&apos;intérieur, et c&apos;est exactement pour ça que j&apos;ai décidé d&apos;en faire ma raison d&apos;agir.
+            Je m'appelle Franck. Je ne suis pas sorti d'une école avec un diplôme encadré. J'aiconstruit ma méthode sur le terrain, au contact de centaines de milliers de personnesque j'ai accompagnées dans la diminution et l'arrêt du tabac — des profils variés, des histoires uniques, des défis que les programmes standards ne savent pas traiter.
           </p>
           <p className="font-poppins text-gray-600 text-lg leading-relaxed">
-            Aujourd&apos;hui, j&apos;accompagne des fumeurs qui en ont assez des patchs, des applications, et des bons conseils qui ne changent rien. Mon approche est directe, structurée, et ancrée dans ta réalité — parce que je sais que chaque dépendance a une histoire unique.
+            Cette expérience massive, personne ne peut la simuler en salle de cours. Elle m'a appris ce qui fonctionne vraiment, ce qui échoue, et surtout pourquoi. Mon approche est directe,bienveillante et structurée. Je ne te mens pas, je ne te flatte pas. Je travaille avec toi, pas pour toi. Parce que la vraie liberté, c'est celle que tu construis toi-même — avec le bon guide à tes côtés.
           </p>
-          <p className="font-poppins text-gray-600 text-lg leading-relaxed">
-            Ce que je t&apos;offre ne se limite pas à &quot;arrêter de fumer&quot;. Je t&apos;aide à comprendre tes déclencheurs, à reconstruire un rapport sain à toi-même, et à gagner une liberté que tu croyais peut-être perdue pour toujours.
+          <p className="font-poppins text-gray-600 text-xl font-bold leading-relaxed">
+            "Si tu suis ma méthode à 100%, tu verras des résultats concrets dès la première semaine. C'est ma promesse."
           </p>
 
           <ul className="flex flex-col gap-3 mt-2">
