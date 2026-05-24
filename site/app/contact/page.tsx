@@ -59,7 +59,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <p className="text-xs text-gray-400 font-poppins">Email</p>
-                <p className="text-gray-800 font-bold font-poppins">franck@soufflelibre.fr</p>
+                <p className="text-gray-800 font-bold font-poppins">soufflelibresupport@gmail.com</p>
               </div>
             </a>
           </div>
