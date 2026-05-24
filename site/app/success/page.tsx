@@ -59,7 +59,7 @@ function SuccessContent() {
         </a>
         <div className="flex items-center justify-center gap-2 mt-4 text-xs text-gray-400 font-poppins">
           <Mail className="w-3.5 h-3.5" />
-          <span>Un email avec le guide en pièce jointe t&apos;a aussi été envoyé.</span>
+          <span>BONNE LECTURE !</span>
         </div>
       </div>
     );
