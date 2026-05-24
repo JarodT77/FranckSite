@@ -1,8 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 import { User, Cigarette, Heart, DollarSign, Target, ArrowRight, ArrowLeft, Check, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+
+emailjs.init("VUVHQpQEFgczHN68E");
 
 type FormData = {
   firstName: string;
@@ -623,9 +626,53 @@ export default function DetailedForm() {
     },
   ];
 
-  const handleSubmit = () => {
-    console.log("Form submitted:", formData);
-    alert("Ton bilan a été envoyé avec succès ! Un coach te contactera très prochainement.");
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
+
+  const handleSubmit = async () => {
+    if (!canGoNext) return;
+    setSubmitting(true);
+    setSubmitError(false);
+
+    const templateParams = {
+      prenom: formData.firstName,
+      age: formData.age,
+      email: formData.email,
+      telephone: formData.phone || "Non renseigné",
+      annees_tabac: formData.smokingYears,
+      type_cigarettes: formData.cigaretteType.join(", "),
+      cigarettes_par_jour: formData.cigarettesPerDay,
+      premiere_cigarette: formData.firstCigarette,
+      moments_tabac: formData.smokingMoments.join(", "),
+      semaine_vs_weekend: formData.weekdayVsWeekend || "Non renseigné",
+      seul_vs_social: formData.aloneVsSocial || "Non renseigné",
+      emotions: formData.emotions.join(", "),
+      gestion_stress: formData.stressManagement,
+      stress_tabac: formData.stressSmoking || "Non renseigné",
+      culpabilite: formData.guilt || "Non renseigné",
+      peur_poids: formData.weightFear || "Non renseigné",
+      peur_echec: formData.failureFear || "Non renseigné",
+      cause_rechute: formData.relapseCause || "Non renseigné",
+      motivation: `${formData.motivationLevel}/10`,
+      budget_mensuel: formData.monthlyBudget,
+      influence_prix: formData.priceInfluence || "Non renseigné",
+      motivation_financiere: formData.financialMotivation || "Non renseigné",
+      destination_economies: formData.savingsDestination.join(", ") || "Non renseigné",
+      economies_calculees: formData.calculatedSavings || "Non renseigné",
+      date_arret: formData.quitDate,
+      type_accompagnement: formData.supportType.join(", ") || "Non renseigné",
+      message: formData.message || "Aucun message",
+    };
+
+    try {
+      await emailjs.send("service_hw9tgeb", "template_0v267ks", templateParams);
+      setSubmitted(true);
+    } catch {
+      setSubmitError(true);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -766,26 +813,36 @@ export default function DetailedForm() {
                 Suivant
                 <ArrowRight className="w-5 h-5" />
               </button>
+            ) : submitted ? (
+              <div className="flex-1 md:flex-none inline-flex items-center justify-center gap-2 px-5 md:px-8 py-3 rounded-full bg-green-100 text-green-700 text-base md:text-lg font-medium">
+                <Check className="w-5 h-5" />
+                Bilan envoyé !
+              </div>
             ) : (
               <button
                 type="button"
                 onClick={handleSubmit}
-                disabled={!canGoNext}
+                disabled={!canGoNext || submitting}
                 className={`flex-1 md:flex-none inline-flex items-center justify-center gap-2 px-5 md:px-8 py-3 rounded-full transition-all text-base md:text-lg font-medium ${
-                  !canGoNext
+                  !canGoNext || submitting
                     ? "bg-gray-100 text-gray-400 cursor-not-allowed"
                     : "bg-red-400 text-red-900 hover:bg-red-500 hover:text-white shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                 }`}
               >
-                Envoyer mon bilan
-                <Check className="w-5 h-5" />
+                {submitting ? "Envoi en cours…" : "Envoyer mon bilan"}
+                {!submitting && <Check className="w-5 h-5" />}
               </button>
             )}
           </div>
         </div>
 
-        <p className="text-sm text-gray-400 text-center mt-6">
-          {!canGoNext && "Remplis les champs obligatoires (*) pour continuer"}
+        <p className="text-sm text-center mt-6">
+          {submitError && (
+            <span className="text-red-500">Une erreur est survenue. Réessaie ou contacte-nous directement.</span>
+          )}
+          {!submitError && !canGoNext && (
+            <span className="text-gray-400">Remplis les champs obligatoires (*) pour continuer</span>
+          )}
         </p>
       </div>
 

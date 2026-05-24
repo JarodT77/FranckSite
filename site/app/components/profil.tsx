@@ -58,10 +58,10 @@ export default function Profil() {
           className="w-full md:w-3/5 flex flex-col gap-6"
         >
           <p className="font-poppins text-gray-600 text-lg leading-relaxed">
-            Je m'appelle Franck. Je ne suis pas sorti d'une école avec un diplôme encadré. J'aiconstruit ma méthode sur le terrain, au contact de centaines de milliers de personnesque j'ai accompagnées dans la diminution et l'arrêt du tabac — des profils variés, des histoires uniques, des défis que les programmes standards ne savent pas traiter.
+            Je m'appelle Franck. Je ne suis pas sorti d'une école avec un diplôme encadré. J'ai construit ma méthode sur le terrain, au contact de centaines de milliers de personnes que j'ai accompagnées dans la diminution et l'arrêt du tabac — des profils variés, des histoires uniques, des défis que les programmes standards ne savent pas traiter.
           </p>
           <p className="font-poppins text-gray-600 text-lg leading-relaxed">
-            Cette expérience massive, personne ne peut la simuler en salle de cours. Elle m'a appris ce qui fonctionne vraiment, ce qui échoue, et surtout pourquoi. Mon approche est directe,bienveillante et structurée. Je ne te mens pas, je ne te flatte pas. Je travaille avec toi, pas pour toi. Parce que la vraie liberté, c'est celle que tu construis toi-même — avec le bon guide à tes côtés.
+            Cette expérience massive, personne ne peut la simuler en salle de cours. Elle m'a appris ce qui fonctionne vraiment, ce qui échoue, et surtout pourquoi. Mon approche est directe, bienveillante et structurée. Je ne te mens pas, je ne te flatte pas. Je travaille avec toi, pas pour toi. Parce que la vraie liberté, c'est celle que tu construis toi-même — avec le bon guide à tes côtés.
           </p>
           <p className="font-poppins text-gray-600 text-xl font-bold leading-relaxed">
             "Si tu suis ma méthode à 100%, tu verras des résultats concrets dès la première semaine. C'est ma promesse."
