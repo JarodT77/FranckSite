@@ -19,11 +19,17 @@ export default function Documentation() {
 
   async function handleCheckout() {
     setLoading(true);
-    const res = await fetch("/api/checkout", { method: "POST" });
-    const data = await res.json();
-    if (data.url) {
-      window.location.href = data.url;
-    } else {
+    try {
+      const res = await fetch("/api/checkout", { method: "POST" });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        alert("Une erreur est survenue. Réessaie ou contacte-nous.");
+        setLoading(false);
+      }
+    } catch {
+      alert("Une erreur est survenue. Réessaie ou contacte-nous.");
       setLoading(false);
     }
   }
