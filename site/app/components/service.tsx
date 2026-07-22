@@ -5,7 +5,7 @@ const services = [
   {
     icon: BookOpen,
     title: "ACCOMPAGNEMENT",
-    price: "À partir de 297€",
+    price: "À partir de 499€",
     duration: "6 semaines",
     description:
       "Une méthode structurée étape par étape, à ton rythme.",
@@ -23,7 +23,7 @@ const services = [
   {
     icon: Users,
     title: "COACHING",
-    price: "À partir de 149€",
+    price: "À partir de 399€",
     duration: "4 semaines",
     description:
       "Un accompagnement 100% sur mesure avec un coach dédié pour t'aider à arrêter efficacement et durablement.",
